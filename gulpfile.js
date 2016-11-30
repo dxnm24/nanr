@@ -24,7 +24,7 @@ elixir(function(mix) {
         '../../../node_modules/jquery/dist/jquery.js',
         '../../../node_modules/foundation-sites/dist/foundation.min.js',
 		'../../../node_modules/swiper/dist/js/swiper.jquery.min.js',
-		'../../../node_modules/lazysizes/lazysizes.min.js',
+		// '../../../node_modules/lazysizes/lazysizes.min.js',
 		'script.js'
     ], 'public/js/app.js');
 

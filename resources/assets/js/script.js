@@ -4,7 +4,7 @@ pagination: '.swiper-pagination',
 paginationClickable: true,
 slidesPerView: 5,
 spaceBetween: 20,
-autoplay: 5000,
+autoplay: 4500,
 nextButton: '.swiper-button-next',
 prevButton: '.swiper-button-prev',
 breakpoints: {
