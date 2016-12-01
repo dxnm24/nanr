@@ -16,9 +16,9 @@
 		<div class="callout item">
 			<a href="{{ $url }}" title="{!! $value->name !!}"{{ $seriClass }}>
 				@if($checkSeri == true)
-				<span><img alt="{!! $value->name !!}" title="{!! $value->name !!}" data-src="{{ url($value->image) }}" class="lazyload"></span>
+				<span><img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}"></span>
 				@else
-				<img alt="{!! $value->name !!}" title="{!! $value->name !!}" data-src="{{ url($value->image) }}" class="lazyload">
+				<img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}">
 				@endif
 			</a>
 			<div class="item-content">

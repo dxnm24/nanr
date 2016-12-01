@@ -6,10 +6,25 @@
 
     RewriteEngine On
 
+    # Force SSL on checkout login account and admin pages
+    RewriteCond %{HTTPS} off
+    RewriteCond %{REQUEST_URI} admin|favicon.ico
+    RewriteCond %{HTTP_HOST} ^(www\.)?(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%2/$1 [R=301,L,QSA]
+
+    # Remove SSL on other pages
+    RewriteCond %{HTTPS} on
+    RewriteCond %{REQUEST_URI} !admin|favicon.ico
+    RewriteCond %{HTTP_HOST} ^(www\.)?(.*)$ [NC]
+    RewriteRule ^(.*)$ http://%2/$1 [R=301,L,QSA]
+
     # redirect from www to non-www.*
     RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
     RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
     
+    RewriteCond %{HTTP_HOST} ^www.%{HTTP_HOST}
+    RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI}/$1 [R=301,QSA,NC,L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]

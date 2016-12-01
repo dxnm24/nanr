@@ -15,9 +15,9 @@
 		<div class="item">
 			<a href="{{ $url0 }}" title="{!! $data[0]->name !!}"{{ $seriClass }}>
 				@if($checkSeri == true)
-				<span><img alt="{!! $data[0]->name !!}" title="{!! $data[0]->name !!}" data-src="{{ url($data[0]->image) }}" class="lazyload"></span>
+				<span><img alt="{!! $data[0]->name !!}" title="{!! $data[0]->name !!}" src="{{ url($data[0]->image) }}"></span>
 				@else
-				<img alt="{!! $data[0]->name !!}" title="{!! $data[0]->name !!}" data-src="{{ url($data[0]->image) }}" class="lazyload">
+				<img alt="{!! $data[0]->name !!}" title="{!! $data[0]->name !!}" src="{{ url($data[0]->image) }}">
 				@endif
 			</a>
 		</div>
@@ -46,9 +46,9 @@
 		<div class="callout item">
 			<a href="{{ $url }}" title="{!! $value->name !!}"{{ $seriClass }}>
 				@if($checkSeri == true)
-				<span><img alt="{!! $value->name !!}" title="{!! $value->name !!}" data-src="{{ url($value->image) }}" class="lazyload"></span>
+				<span><img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}"></span>
 				@else
-				<img alt="{!! $value->name !!}" title="{!! $value->name !!}" data-src="{{ url($value->image) }}" class="lazyload">
+				<img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}">
 				@endif
 			</a>
 			<h2><a href="{{ $url }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
