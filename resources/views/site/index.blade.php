@@ -39,8 +39,8 @@
 			{{-- type 0 --}}
 			@if($value->display == 0)
 			<div class="box">
-				<div class="row column box-title box-title-hr">
-					<h3>{!! $value->name !!}</h3>
+				<div class="row column box-title box-title-hr home-title">
+					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
 					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
@@ -55,8 +55,8 @@
 			{{-- type 1 --}}
 			@if($value->display == 1)
 			<div class="box">
-				<div class="row column box-title box-title-hr">
-					<h3>{!! $value->name !!}</h3>
+				<div class="row column box-title box-title-hr home-title">
+					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box1', array('data' => $value->posts, 'type' => $value))
@@ -70,8 +70,8 @@
 			{{-- type 2 --}}
 			@if($value->display == 2)
 			<div class="box">
-				<div class="row column box-title box-title-hr">
-					<h3>{!! $value->name !!}</h3>
+				<div class="row column box-title box-title-hr home-title">
+					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box2', array('data' => $value->posts, 'type' => $value))
@@ -85,8 +85,8 @@
 			{{-- type 3 --}}
 			@if($value->display == 3)
 			<div class="box">
-				<div class="row column box-title box-title-hr">
-					<h3>{!! $value->name !!}</h3>
+				<div class="row column box-title box-title-hr home-title">
+					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box3', array('data' => $value->posts, 'type' => $value))
@@ -100,8 +100,8 @@
 			{{-- type 4 --}}
 			@if($value->display == 4)
 			<div class="box">
-				<div class="row column box-title box-title-hr">
-					<h3>{!! $value->name !!}</h3>
+				<div class="row column box-title box-title-hr home-title">
+					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box4', array('data' => $value->posts, 'type' => $value))
