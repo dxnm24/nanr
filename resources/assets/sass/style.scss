@@ -1496,19 +1496,21 @@ h3.middle-title {
 .home-title {
 	h3 {
 		padding: 0;
-		> a.home-title-link {
-			display: inline-block;
-			color: #fff;
-			padding: 0.313rem 0.625rem; 
-		}
-		> a.home-title-rss {
-			background: #262626;
-			display: inline-block;
-			color: #fff;
-			padding: 0.313rem 0.625rem; 
-			> i.fa {
+		> a {
+			> span.home-title-link {
+				display: inline-block;
 				color: #fff;
-				font-size: 1.250rem;
+				padding: 0.313rem 0.625rem; 
+			}
+			> span.home-title-rss {
+				background: #262626;
+				display: inline-block;
+				color: #fff;
+				padding: 0.313rem 0.625rem; 
+				> i.fa {
+					color: #fff;
+					font-size: 1.250rem;
+				}
 			}
 		}
 	}
