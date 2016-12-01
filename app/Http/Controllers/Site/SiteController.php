@@ -351,7 +351,7 @@ class SiteController extends Controller
             }
             //auto meta tag for seo
             if(empty($post->meta_title)) {
-                $post->meta_title = $post->name.' | Tìm post '.$post->name.' tại nauanngonre.com';
+                $post->meta_title = $post->name.' | '.$post->name.' tại nauanngonre.com';
             }
             if(empty($post->meta_keyword)) {
                 $postNameNoLatin = CommonMethod::convert_string_vi_to_en($post->name);
