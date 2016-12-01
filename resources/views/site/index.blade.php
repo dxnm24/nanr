@@ -40,14 +40,14 @@
 			@if($value->display == 0)
 			<div class="box">
 				<div class="row column box-title box-title-hr home-title">
-					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<h3><a href="{{ $url }}" class="home-title-link">{!! $value->name !!}</a><a href="{{ $url }}" class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></a></h3>
 					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box', array('data' => $value->posts, 'type' => $value))
 				</div>
 				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			@endif
@@ -56,13 +56,14 @@
 			@if($value->display == 1)
 			<div class="box">
 				<div class="row column box-title box-title-hr home-title">
-					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<h3><a href="{{ $url }}" class="home-title-link">{!! $value->name !!}</a><a href="{{ $url }}" class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></a></h3>
+					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box1', array('data' => $value->posts, 'type' => $value))
 				</div>
 				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			@endif
@@ -71,13 +72,14 @@
 			@if($value->display == 2)
 			<div class="box">
 				<div class="row column box-title box-title-hr home-title">
-					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<h3><a href="{{ $url }}" class="home-title-link">{!! $value->name !!}</a><a href="{{ $url }}" class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></a></h3>
+					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box2', array('data' => $value->posts, 'type' => $value))
 				</div>
 				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			@endif
@@ -86,13 +88,14 @@
 			@if($value->display == 3)
 			<div class="box">
 				<div class="row column box-title box-title-hr home-title">
-					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<h3><a href="{{ $url }}" class="home-title-link">{!! $value->name !!}</a><a href="{{ $url }}" class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></a></h3>
+					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box3', array('data' => $value->posts, 'type' => $value))
 				</div>
 				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			@endif
@@ -101,13 +104,14 @@
 			@if($value->display == 4)
 			<div class="box">
 				<div class="row column box-title box-title-hr home-title">
-					<h3>{!! $value->name !!}</h3><a href="{{ $url }}" class="home-title-rss" rel="nofollow"><i class="fa fa-rss" aria-hidden="true"></i></a>
+					<h3><a href="{{ $url }}" class="home-title-link">{!! $value->name !!}</a><a href="{{ $url }}" class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></a></h3>
+					<a href="{{ $url }}" class="btn-seemore float-right hide-for-small-only"><span>Xem thêm</span></a>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box4', array('data' => $value->posts, 'type' => $value))
 				</div>
 				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			@endif
