@@ -11,7 +11,6 @@
 			<a href="{{ url($data[0]->slug) }}" title="{!! $data[0]->name !!}">
 				<span>{!! $data[0]->name !!}</span>
 			</a>
-			<span><i class="fa fa-clock-o"></i>{!! date('d-m-Y', strtotime($data[0]->created_at)) !!}</span>
 			<p>{!! $data[0]->summary !!}</p>
 		</div>
 	</div>
@@ -32,7 +31,6 @@
 			</div>
 			<div class="box4-item-title">
 				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a>
-				<span><i class="fa fa-clock-o"></i>{!! date('d-m-Y', strtotime($value->created_at)) !!}</span>
 			</div>
 		</div>
 	</div>
