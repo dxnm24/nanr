@@ -66,6 +66,7 @@ table tbody, table tfoot, table thead {
 
 a.logo {
     float: left;
+    padding: 0.313rem 0.938rem;
 	> img {
 		height: 4rem;
 		max-width: 100%;
@@ -180,27 +181,6 @@ header {
 form.search-form {
 	position: relative;
 	width: 100%;
-	input.search-input {
-		position: relative;
-		margin-bottom: 0;
-		padding-right: 8.750rem;
-	}
-	a.search-button {
-		background-color: #FF8300;
-		border: none;
-		position: absolute;
-		right: 0;
-		top: 0;
-		padding: 0.563rem 0.938rem;
-		height: 2.375rem;
-		text-decoration: none;
-		color: #fff;
-	}
-	a.search-button:hover,
-	a.search-button:focus {
-		background-color: #FF8300;
-		color: #fff;
-	}
 	.input-group {
 		margin: 0;
 	}
@@ -209,24 +189,21 @@ form.search-form {
 	}
 	.button {
 		background-color: #FF8300;
+		height: 2.5rem;
+		width: 3rem;
+		padding: 0;
+		i.fa {
+			padding: 0.750rem 1rem;
+			-webkit-transition: all 0.25s;
+    		transition: all 0.25s;
+		}
 	}
 	.button:focus, .button:hover {
 	    background-color: #FF8300;
     	color: #fff;
-	}
-	p {
-	    color: #888;
-	    font-size: 0.813rem;
-	    margin-top: 0.188rem;
-	    margin-bottom: 0.188rem;
-	    a {
-	    	color: #888;
-	    	font-size: 0.813rem;
-	    }
-	    a:hover,
-		a:focus {
-			color: #ff8300;
-			text-decoration: none;
+    	i.fa {
+			font-size: 1.250rem;
+			padding: 0.563rem 0.875rem;
 		}
 	}
 }
