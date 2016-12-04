@@ -18,6 +18,7 @@ class CreatePosttypeTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('parent_id');
+            $table->integer('relation_id');
             $table->integer('level');
             $table->integer('position');
             $table->string('summary', 1000);
@@ -33,6 +34,7 @@ class CreatePosttypeTable extends Migration
             $table->integer('type')->default(ACTIVE);
             $table->integer('display');
             $table->integer('grid')->default(ACTIVE);
+            $table->string('color');
             $table->integer('status')->default(ACTIVE);
             $table->string('lang')->default(VI);
             $table->timestamps();

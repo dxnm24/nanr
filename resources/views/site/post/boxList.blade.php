@@ -1,35 +1,18 @@
-<div class="box-large">
+<div class="box-list">
 	@foreach($data as $key => $value)
-	<?php 
-		// if(isset($value->seri) && $value->seri == ACTIVE) {
-		if(isset($data->seri) && $data->seri == ACTIVE) {
-			$checkSeri = true;
-			$seriClass = ' class=seri';
-			$url = url($type->slug.'/'.$value->slug);
-		} else {
-			$checkSeri = false;
-			$seriClass = '';
-			$url = url($value->slug);
-		}
-	?>
-	<div class="box-large-item">
-		<div class="row">
-			<div class="medium-3 columns">
-				<div class="item">
-					<a href="{{ $url }}" title="{!! $value->name !!}"{{ $seriClass }}>
-						@if($checkSeri == true)
-						<span><img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}"></span>
-						@else
-						<img alt="{!! $value->name !!}" title="{!! $value->name !!}" src="{{ url($value->image) }}">
-						@endif
-					</a>
-				</div>
-			</div>
-			<div class="medium-9 columns">
-				<h2><a href="{{ $url }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
+	<div class="row">
+		<div class="medium-5 columns">
+			<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
+				<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+			</a>
+		</div>
+		<div class="medium-7 columns">
+			<div class="post-large">
+				<h2><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
 				<p>{!! $value->summary !!}</p>
 			</div>
 		</div>
+		<div class="columns"><div class="xhr"></div></div>
 	</div>
 	@endforeach
 </div>

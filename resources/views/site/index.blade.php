@@ -33,80 +33,92 @@
 @if(count($data) > 0)
 	@foreach($data as $key => $value)
 		@if(count($value->posts) > 0)
-			<?php $url = url($value->slug); ?>
+			<?php 
+				if($value->parentType) {
+					$url = url($value->parentType->slug.'/'.$value->slug);
+				} else {
+					$url = url($value->slug);
+				}
+			?>
 
 			{{-- check display --}}
 			{{-- type 0 --}}
 			@if($value->display == 0)
-			<div class="box">
-				<div class="row column box-title box-title-hr home-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="home-title-link">{!! $value->name !!}</span><span class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+			<div class="box box0">
+				<div class="row column box-title box-title-hr display-title">
+					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
 				</div>
 				<div class="box-inner">
-				@include('site.post.box', array('data' => $value->posts, 'type' => $value))
-				</div>
-				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+				@include('site.post.box', array('type' => $value))
 				</div>
 			</div>
 			@endif
 			
 			{{-- type 1 --}}
 			@if($value->display == 1)
-			<div class="box">
-				<div class="row column box-title box-title-hr home-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="home-title-link">{!! $value->name !!}</span><span class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+			<div class="box box1">
+				<div class="row column box-title box-title-hr display-title">
+					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
 				</div>
 				<div class="box-inner">
-				@include('site.post.box1', array('data' => $value->posts, 'type' => $value))
-				</div>
-				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+				@include('site.post.box1', array('type' => $value))
 				</div>
 			</div>
 			@endif
 
-			{{-- type 2 --}}
+			{{-- type 2 + 3:typeRelation --}}
 			@if($value->display == 2)
 			<div class="box">
-				<div class="row column box-title box-title-hr home-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="home-title-link">{!! $value->name !!}</span><span class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
-				</div>
-				<div class="box-inner">
-				@include('site.post.box2', array('data' => $value->posts, 'type' => $value))
-				</div>
-				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
-				</div>
-			</div>
-			@endif
-
-			{{-- type 3 --}}
-			@if($value->display == 3)
-			<div class="box">
-				<div class="row column box-title box-title-hr home-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="home-title-link">{!! $value->name !!}</span><span class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
-				</div>
-				<div class="box-inner">
-				@include('site.post.box3', array('data' => $value->posts, 'type' => $value))
-				</div>
-				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+				<div class="row">
+					<div class="medium-6 columns box2">
+						<div class="box-title box-title-hr display-title">
+							<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+						</div>
+						<div class="box-inner">
+						@include('site.post.box2', array('type' => $value))
+						</div>
+					</div>
+					<div class="medium-6 columns box3">
+						@if($value->typeRelation)
+						<?php 
+							if($value->typeRelation->parentType) {
+								$url2 = url($value->typeRelation->parentType->slug.'/'.$value->typeRelation->slug);
+							} else {
+								$url2 = url($value->typeRelation->slug);
+							}
+						?>
+						<div class="box-title box-title-hr display-title">
+							<h3><a href="{{ $url2 }}" title="{!! $value->typeRelation->name !!}"><span class="display-title-link">{!! $value->typeRelation->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+						</div>
+						<div class="box-inner">
+						@include('site.post.box3', array('type' => $value->typeRelation))
+						</div>
+						@endif
+					</div>
 				</div>
 			</div>
 			@endif
 
 			{{-- type 4 --}}
 			@if($value->display == 4)
-			<div class="box">
-				<div class="row column box-title box-title-hr home-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="home-title-link">{!! $value->name !!}</span><span class="home-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+			<div class="box box4">
+				<div class="row column box-title box-title-hr display-title">
+					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
 				</div>
 				<div class="box-inner">
-				@include('site.post.box4', array('data' => $value->posts, 'type' => $value))
+				@include('site.post.box4', array('type' => $value))
 				</div>
-				<div class="row column show-for-small-only box-seemore">
-					<a href="{{ $url }}" class="btn-seemore" rel="nofollow">Xem thêm<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+			</div>
+			@endif
+
+			{{-- type 5 --}}
+			@if($value->display == 5)
+			<div class="box box5">
+				<div class="row column box-title box-title-hr display-title">
+					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+				</div>
+				<div class="box-inner">
+				@include('site.post.box5', array('type' => $value))
 				</div>
 			</div>
 			@endif

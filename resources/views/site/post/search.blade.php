@@ -29,15 +29,13 @@
 		@include('site.common.breadcrumb', $breadcrumb)
 	</div>
 	<div class="row column box-title">
-		<h1>{!! $title !!}</h1>
+		<strong>{!! $title !!}</strong>
 	</div>
-	<div class="row column">
-		<p>Từ khóa: {{ $request->name }}</p>
+	<div class="row column search-title">
+		<span>Kết quả tìm kiếm cho từ khóa:</span><h1>{{ $request->name }}</h1>
 	</div>
 	@if(isset($data) && $data->total() > 0)
-		<div class="box-inner">
 		@include('site.post.boxList', array('data' => $data))
-		</div>
 		<div class="row column">
 			@include('site.common.paginate', ['paginator' => $data])
 		</div>

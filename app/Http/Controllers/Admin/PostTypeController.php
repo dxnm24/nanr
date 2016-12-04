@@ -59,8 +59,11 @@ class PostTypeController extends Controller
      */
     public function create()
     {
+        // get parent type display 2 & no has relationId
+        $relationArray = self::getArrayRelation();
+        // get parent type no has child
         $postTypes = CommonQuery::getArrayParentZero('post_types');
-        return view('admin.posttype.create', ['postTypes' => $postTypes]);
+        return view('admin.posttype.create', ['postTypes' => $postTypes, 'relationArray' => $relationArray]);
     }
 
     /**
@@ -86,10 +89,15 @@ class PostTypeController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        // check display to relation_id
+        if($request->display != DISPLAY_TYPE_3) {
+            $request->relation_id = 0;
+        }
         PostType::create([
                 'name' => $request->name,
                 'slug' => $request->slug,
                 'parent_id' => $request->parent_id,
+                'relation_id' => $request->relation_id,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),
@@ -103,6 +111,7 @@ class PostTypeController extends Controller
                 'type' => $request->type,
                 'display' => $request->display,
                 'grid' => $request->grid,
+                'color' => $request->color,
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);
@@ -129,9 +138,12 @@ class PostTypeController extends Controller
      */
     public function edit($id)
     {
+        // get parent type display 2 & no has relationId
+        $relationArray = self::getArrayRelation();
+        // get posttype
         $data = PostType::find($id);
         $postTypes = CommonQuery::getArrayParentZero('post_types', $data->id);
-        return view('admin.posttype.edit', ['data' => $data, 'postTypes' => $postTypes]);
+        return view('admin.posttype.edit', ['data' => $data, 'postTypes' => $postTypes, 'relationArray' => $relationArray]);
     }
 
     /**
@@ -162,10 +174,15 @@ class PostTypeController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        // check display to relation_id
+        if($request->display != DISPLAY_TYPE_3) {
+            $request->relation_id = 0;
+        }
         $data->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
                 'parent_id' => $request->parent_id,
+                'relation_id' => $request->relation_id,
                 'summary' => $request->summary,
                 'description' => $request->description,
                 'image' => CommonMethod::removeDomainUrl($request->image),
@@ -179,6 +196,7 @@ class PostTypeController extends Controller
                 'type' => $request->type,
                 'display' => $request->display,
                 'grid' => $request->grid,
+                'color' => $request->color,
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);
@@ -233,6 +251,21 @@ class PostTypeController extends Controller
             }
         }
         return 0;
+    }
+
+    private function getArrayRelation()
+    {
+        $data = DB::table('post_types')
+            ->where('status', ACTIVE)
+            ->where('home', ACTIVE)
+            ->where('display', DISPLAY_TYPE_2)
+            ->where('relation_id', '=', 0)
+            ->pluck('name', 'id');
+        if(count($data) > 0) {
+            return $data;
+        } else {
+            return [];
+        }
     }
 
 }

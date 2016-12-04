@@ -35,11 +35,13 @@
 					// $thumbnail = str_replace('/images/', '/thumbs/', $value->image);
 					// $thumbnail = str_replace('/thumb/', '/', $thumbnail);
 				?>
-				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-					<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
-					<span>{!! $value->name !!}</span>
-				</a>
-				<p>{!! $value->summary !!}</p>
+				<div class="pum">
+					<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
+						<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+						<span>{!! $value->name !!}</span>
+					</a>
+					<p>{!! $value->summary !!}</p>
+				</div>
 				@endforeach
 			</div>
 			@endif

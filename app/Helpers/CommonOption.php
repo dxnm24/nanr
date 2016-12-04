@@ -118,11 +118,12 @@ class CommonOption
     static function displayTypeArray()
     {
         return array(
-            0=>'Kiểu 0 (Mặc định)', 
-            1=>'Kiểu 1', 
-            2=>'Kiểu 2', 
-            3=>'Kiểu 3', 
-            4=>'Kiểu 4', 
+            DISPLAY_TYPE_0=>'Kiểu 0 (Mặc định)', 
+            DISPLAY_TYPE_1=>'Kiểu 1', 
+            DISPLAY_TYPE_2=>'Kiểu 2', 
+            DISPLAY_TYPE_3=>'Kiểu 3', 
+            DISPLAY_TYPE_4=>'Kiểu 4', 
+            DISPLAY_TYPE_5=>'Kiểu 5', 
         );
     }
     static function getDisplayType($displayType=1)

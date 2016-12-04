@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PostType extends Model
 {
     protected $fillable = [
-        'name', 'slug', 'parent_id', 'level', 'position', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'limited', 'sort_by', 'home', 'type', 'display', 'grid', 'status', 'lang',
+        'name', 'slug', 'parent_id', 'relation_id', 'level', 'position', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'limited', 'sort_by', 'home', 'type', 'display', 'grid', 'color', 'status', 'lang',
     ];
     public function posttyperelations()
     {

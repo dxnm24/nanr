@@ -32,7 +32,7 @@
 
 @section('content')
 <div class="box">
-	<div class="row column box-title post-title">
+	<div class="row column box-title article-title">
 		<h1>{!! $h1 !!}</h1>
 	</div>
 	<div class="row column">

@@ -65,13 +65,11 @@
 		@endif
 	</div>
 	@endif
-	<div class="box-inner">
-		@if($type->grid == ACTIVE)
-		@include('site.post.boxList', array('data' => $data, 'type' => $type))
-		@else
-		@include('site.post.boxGrid', array('data' => $data, 'type' => $type))
-		@endif
-	</div>
+	@if($type->grid == ACTIVE)
+	@include('site.post.boxList', array('data' => $data, 'type' => $type))
+	@else
+	@include('site.post.boxGrid', array('data' => $data, 'type' => $type))
+	@endif
 	@if(isset($paginate))
 	<div class="row column">
 		@include('site.common.paginate', ['paginator' => $data])

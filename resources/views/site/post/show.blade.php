@@ -38,21 +38,24 @@
 	<div class="row column">
 		<?php
 			if(isset($typeMainParent)) {
+				$typeMainParentUrl = url($typeMainParent->slug);
+				$typeMainUrl = url($typeMainParent->slug.'/'.$typeMain->slug);
 				$breadcrumb = array(
-					['name' => $typeMainParent->name, 'link' => url($typeMainParent->slug)],
-					['name' => $typeMain->name, 'link' => url($typeMainParent->slug.'/'.$typeMain->slug)],
+					['name' => $typeMainParent->name, 'link' => $typeMainParentUrl],
+					['name' => $typeMain->name, 'link' => $typeMainUrl],
 					['name' => $h1, 'link' => '']
 				);
 			} else {
+				$typeMainUrl =url($typeMain->slug);
 				$breadcrumb = array(
-					['name' => $typeMain->name, 'link' => url($typeMain->slug)],
+					['name' => $typeMain->name, 'link' => $typeMainUrl],
 					['name' => $h1, 'link' => '']
 				);
 			}
 		?>
 		@include('site.common.breadcrumb', $breadcrumb)
 	</div>
-	<div class="row column box-title post-title">
+	<div class="row column box-title article-title">
 		<h1>{!! $h1 !!}</h1>
 	</div>
 	<div class="row column">
@@ -79,9 +82,9 @@
 
 			<div class="fb-comments" data-numposts="5"></div>
 
-			@include('site.post.related', ['data' => $seri, 'postData' => $postSeries, 'dataSeri' => $seriParent])
-			@include('site.post.related', ['data' => $typeMain, 'postData' => $postTypes])
-			@include('site.post.related', ['data' => $related, 'postData' => $postRelated])
+			@include('site.post.related', ['typeMainUrl' => $typeMainUrl, 'data' => $seri, 'postData' => $postSeries])
+			@include('site.post.related', ['typeMainUrl' => $typeMainUrl, 'data' => $typeMain, 'postData' => $postTypes])
+			@include('site.post.related', ['typeMainUrl' => $typeMainUrl, 'data' => $related, 'postData' => $postRelated])
 
 		</div>
 	</div>

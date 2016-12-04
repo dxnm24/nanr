@@ -1,12 +1,19 @@
-<div class="row small-up-1 medium-up-3 large-up-3 box3">
-	@foreach($data as $key => $value)
-	<div class="column">
-		<div class="callout box3-item">
-			<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-				<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
-				<span>{!! $value->name !!}</span>
-			</a>
-		</div>
+<?php 
+	$data = $type->posts;
+?>
+@foreach($data as $key => $value)
+<?php 
+	$thumbnail = str_replace('/images/', '/thumbs/', $value->image);
+	$thumbnail = str_replace('/thumb/', '/', $thumbnail);
+?>
+<div class="post-list clearfix">
+	<div class="post-image">
+		<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
+			<img src="{{ $thumbnail }}" alt="{!! $value->name !!}" />
+		</a>
 	</div>
-	@endforeach
+	<div class="post-title">
+		<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a>
+	</div>
 </div>
+@endforeach

@@ -28,9 +28,10 @@ class SiteController extends Controller
         }
         //query
         $data = DB::table('post_types')
-            ->select('id', 'name', 'slug', 'summary', 'type', 'display', 'limited', 'sort_by')
+            ->select('id', 'name', 'slug', 'parent_id', 'relation_id', 'summary', 'type', 'display', 'limited', 'sort_by')
             ->where('status', ACTIVE)
             ->where('home', ACTIVE)
+            ->where('display', '!=', DISPLAY_TYPE_3)
             ->orderByRaw(DB::raw("position = '0', position"))
             ->orderBy('name', 'asc')
             ->get();
@@ -39,64 +40,54 @@ class SiteController extends Controller
                 // post limit item for type box in index page
                 if(!empty($value->limited) && $value->limited > 0) {
                     $typeLimit = $value->limited;
-                } elseif($value->display == 1) {
+                } elseif($value->display == DISPLAY_TYPE_1) {
                     $typeLimit = PAGINATE_BOX_1;
-                } elseif($value->display == 2) {
+                } elseif($value->display == DISPLAY_TYPE_2) {
                     $typeLimit = PAGINATE_BOX_2;
-                } elseif($value->display == 3) {
+                } elseif($value->display == DISPLAY_TYPE_3) {
                     $typeLimit = PAGINATE_BOX_3;
-                } elseif($value->display == 4) {
+                } elseif($value->display == DISPLAY_TYPE_4) {
                     $typeLimit = PAGINATE_BOX_4;
+                }elseif($value->display == DISPLAY_TYPE_5) {
+                    $typeLimit = PAGINATE_BOX_5;
                 } else {
                     $typeLimit = PAGINATE_BOX;
                 }
-/****
-                // check parent_id
-                $types = $this->getPostTypeByParentIdQuery($value->id)->take($typeLimit)->get();
-                $countTypes = count($types);
-                if($countTypes > 0) {
-                    if($countTypes >= $typeLimit) {
-                        $limit = 0;
-                    } else {
-                        $limit = $typeLimit - $countTypes;
-                    }
-                    if($value->type == ACTIVE && $limit > 0) {
-                        $posttypes = $this->getPostByTypeQuery($value->id)->take($limit)->get();
-                        // $posttypes_sortbyview = $this->getPostByTypeQuery($value->id, 'view')->take($limit)->get();
-                    } else {
-                        $posttypes = $this->getPostByRelationsQuery('type', $value->id, $value->sort_by)->take($limit)->get();
-                        // $posttypes_sortbyview = null;
-                    }
-                    $value->posts = collect($types)->merge($posttypes);
-                    // $value->posts2 = collect($types)->merge($posttypes_sortbyview);
-                    $value->posts2 = [];
-                    //add field seri to check seri ribbon image (doan code duoi day cho phep check item trong trang seri la type hay post de su dung 1 image ribbon)
-                    //2.1. check item (mo doan code nay khi khong su dung muc so 1.1. o duoi va dong vao khi su dung muc so 1.1. o duoi)
-                    $typesIds = $this->getPostTypeByParentIdQuery($value->id)->take($typeLimit)->pluck('id');
-                    foreach($value->posts as $v) {
-                        if(in_array($v->id, $typesIds)) {
-                            $v->seri = ACTIVE;
-                        } else {
-                            $v->seri = INACTIVE;
-                        }
-                    }
-                    //1.1 check box (mo ra neu khong su dung muc so 2.1. va dong vao khi su dung muc so 2.1. o tren)
-                    // $value->posts->seri = ACTIVE;
-                } else {
-                    //neu check type the loai (hien thi 2 tab) thi mo <if> o day
-                    // if($value->type == ACTIVE) {
-                    //     $value->posts = $this->getPostByTypeQuery($value->id)->take($typeLimit)->get();
-                    //     $value->posts2 = $this->getPostByTypeQuery($value->id, 'view')->take($typeLimit)->get();
-                    // } else {
-                        //chi hien thi the loai (khong co 2 tab)
-                        $value->posts = $this->getPostByRelationsQuery('type', $value->id, $value->sort_by)->take($typeLimit)->get();
-                        $value->posts2 = [];
-                    // }
-                }
-****/
                 //chi hien thi the loai (khong co 2 tab)
                 $value->posts = $this->getPostByRelationsQuery('type', $value->id, $value->sort_by)->take($typeLimit)->get();
-                $value->posts2 = [];
+                // neu the loai nay la con cua the loai khac (co parent_id khac 0) thi lay ra the loai cha cua no
+                if($value->parent_id != 0) {
+                    $parentTypeData = self::getPostTypeById($value->parent_id);
+                    $value->parentType = $parentTypeData;
+                } else {
+                    $value->parentType = null;
+                }
+                // kieu 2: chia 2 cot, display:2 cot trai, display:3 cot phai. Neu la cot trai, thi tim cot phai luon
+                if($value->display == DISPLAY_TYPE_2) {
+                    // typeRelation: display:3 cot phai
+                    $displayRelation = DB::table('post_types')
+                        ->select('id', 'name', 'slug', 'parent_id', 'relation_id', 'summary', 'type', 'display', 'limited', 'sort_by')
+                        ->where('status', ACTIVE)
+                        ->where('home', ACTIVE)
+                        ->where('display', DISPLAY_TYPE_3)
+                        ->where('relation_id', $value->id)
+                        ->first();
+                    if($displayRelation) {
+                        $value->typeRelation = $displayRelation;
+                        $value->typeRelation->posts = $this->getPostByRelationsQuery('type', $displayRelation->id, $displayRelation->sort_by)->take(PAGINATE_BOX_3)->get();
+                        if($value->typeRelation->parent_id != 0) {
+                            $parentTypeData = self::getPostTypeById($value->typeRelation->parent_id);
+                            $value->typeRelation->parentType = $parentTypeData;
+                        } else {
+                            $value->typeRelation->parentType = null;
+                        }
+                    } else {
+                        $value->typeRelation = null;
+                    }
+                } else {
+                    $value->typeRelation = null;
+                }
+                
             }
         }
         //seo meta
@@ -491,7 +482,7 @@ class SiteController extends Controller
     private function getPostTypeByParentIdQuery($id)
     {
         return DB::table('post_types')
-            ->select('id', 'name', 'slug', 'summary', 'image', 'type', 'display', 'grid')
+            ->select('id', 'name', 'slug', 'parent_id', 'relation_id', 'summary', 'image', 'type', 'display', 'grid')
             ->where('status', ACTIVE)
             ->where('parent_id', $id)
             ->orderByRaw(DB::raw("position = '0', position"))
@@ -500,7 +491,7 @@ class SiteController extends Controller
     private function getPostTypeById($id)
     {
         return DB::table('post_types')
-            ->select('id', 'name', 'slug', 'summary', 'parent_id', 'type', 'display', 'grid')
+            ->select('id', 'name', 'slug', 'parent_id', 'relation_id', 'summary', 'image', 'type', 'display', 'grid')
             ->where('id', $id)
             ->where('status', ACTIVE)
             ->first();
@@ -508,7 +499,7 @@ class SiteController extends Controller
     private function getPostTypeBySlug($slug, $hasParentId = null)
     {
         $result = DB::table('post_types')
-            ->select('id', 'name', 'slug', 'parent_id', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'type', 'display', 'grid')
+            ->select('id', 'name', 'slug', 'parent_id', 'relation_id', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'type', 'display', 'grid')
             ->where('slug', $slug)
             ->where('status', ACTIVE);
         if($hasParentId) {

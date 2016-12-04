@@ -21,38 +21,48 @@
 </script>
 @endif
 
-@include('site.common.top')
 
-<?php $device = getDevice2(); ?>
-@if(isset($isHome) && $isHome == true && $device != MOBILE && isset($homesliders) && count($homesliders) > 0)
-@include('site.common.homeslider', ['homesliders' => $homesliders])
-@endif
+<div class="row column">
+  <div class="container">
 
-@include('site.common.ad', ['posPc' => 1, 'posMobile' => 2])
+  @include('site.common.top')
 
-<div class="row">
-	<div class="medium-7 columns">
-		<div class="content">
-      @if(!isset($isHome) || $isHome != true || $device != MOBILE)
-			@yield('content')
-      @endif
-		</div>
-	</div>
-  <div class="medium-3 medium-push-2 columns">
-    @include('site.common.side')
+  <div class="main">
+
+    <?php $device = getDevice2(); ?>
+    @if(isset($isHome) && $isHome == true && $device != MOBILE && isset($homesliders) && count($homesliders) > 0)
+    @include('site.common.homeslider', ['homesliders' => $homesliders])
+    @endif
+
+    @include('site.common.ad', ['posPc' => 1, 'posMobile' => 2])
+
+    <div class="row">
+    	<div class="medium-7 columns">
+    		<div class="content">
+          @if(!isset($isHome) || $isHome != true || $device != MOBILE)
+    			@yield('content')
+          @endif
+    		</div>
+    	</div>
+      <div class="medium-3 medium-push-2 columns">
+        @include('site.common.side')
+      </div>
+      <div class="medium-2 medium-pull-3 columns">
+        @include('site.common.middle')
+      </div>
+    	
+    </div>
+
+    @include('site.common.ad', ['posPc' => 3, 'posMobile' => 4])
+
   </div>
-  <div class="medium-2 medium-pull-3 columns">
-    @include('site.common.middle')
+
+  @include('site.common.slider')
+
+  @include('site.common.bottom')
+
   </div>
-	
 </div>
-
-
-@include('site.common.ad', ['posPc' => 3, 'posMobile' => 4])
-
-@include('site.common.slider')
-
-@include('site.common.bottom')
 
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

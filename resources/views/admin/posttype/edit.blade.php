@@ -65,11 +65,16 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="display">Display</label>
-						<p>Kiểu hiển thị trên trang chủ</p>
 						<div class="row">
-							<div class="col-sm-8">
-							{!! Form::select('display', CommonOption::displayTypeArray(), $data->display, array('class' =>'form-control')) !!}
+							<div class="col-sm-4">
+								<label for="display">Display</label>
+								<p>Kiểu hiển thị trên trang chủ</p>
+								{!! Form::select('display', CommonOption::displayTypeArray(), $data->display, array('class' =>'form-control', 'onchange' => 'loadRelation()')) !!}
+							</div>
+							<div class="col-sm-4">
+								<label for="relation_id">Relation</label>
+								<p>Lựa chọn thể loại có kiểu 2, khi Display chọn kiểu 3 (cột bên cạnh kiểu 2 trên trang chủ)</p>
+								{!! Form::select('relation_id', array_add($relationArray, '0', '-- chọn'), $data->relation_id, array('class' =>'form-control')) !!}
 							</div>
 						</div>
 					</div>
@@ -100,6 +105,14 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group" style="display: none;">
+						<label for="color">Color</label>
+						<div class="row">
+							<div class="col-sm-8">
+								<input name="color" type="text" value="{{ $data->color }}" class="form-control">
+							</div>
+						</div>
+					</div>
 					
 					<div class="row">
 						<div class="col-sm-8">
@@ -118,5 +131,7 @@
 		</div>
 	</div>
 </div>
+
+@include('admin.posttype.script')
 
 @stop
