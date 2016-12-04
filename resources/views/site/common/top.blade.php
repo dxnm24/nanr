@@ -47,7 +47,8 @@
 <header class="show-for-medium">
 	<div class="row column">
 		<a href="/" class="logo"><img src="/img/logo.png" alt="Nấu Ăn Ngon Rẻ" /></a>
-		{!! $topmenu !!}
+		
 	</div>
+	<div class="row column">{!! $topmenu !!}</div>
 </header>
 @endif

@@ -72,15 +72,8 @@ function limit_text($text, $len) {
 function checkCurrent($url, $home=null)
 {
     $currentUrl = Request::url();
-    if($home != null) {
-        if ($currentUrl == $url) {
-            return 'class=current';
-        }
-    } else {
-        $segment1 = Request::segment(1);
-        if ($currentUrl == $url && $segment1 != null) {
-            return 'class=current';
-        }
+    if ($currentUrl == $url) {
+        return 'class=current';
     }
     return;
 }

@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
             ->orderBy('name')
             ->get();
         if($type==MENUTYPE1) {
-            $output = '<ul class="dropdown menu" data-dropdown-menu>';
+            $output = '<ul class="menu">';
         } elseif($type==MENUTYPE2) {
             $output = '<ul class="sidemenu">';
         } else {
@@ -91,10 +91,11 @@ class AppServiceProvider extends ServiceProvider
         if(count($sub) > 0) {
             foreach($sub as $value) {
                 $hasChild = self::_hasChild($value->id);
-                $output .= '<li '.checkCurrent(url($value->url)).'><a href="'.$value->url.'">'.$value->name.'</a>';
+                $classHasChild = ($hasChild)?' class="hasChild"':'';
+                $output .= '<li '.checkCurrent(url($value->url)).$classHasChild.'><a href="'.$value->url.'">'.$value->name.'</a>';
                 if($hasChild) {
                     if($type==MENUTYPE1) {
-                        $output .= '<ul class="menu">';
+                        $output .= '<ul class="submenu">';
                     } else {
                         $output .= '<ul>';
                     }
