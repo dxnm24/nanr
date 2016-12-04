@@ -1398,7 +1398,7 @@ h3.middle-title {
 		color: #fff;
 		display: block;
 		font-size: 0.938rem;
-		line-height: 54px;
+		line-height: 50px;
 		padding: 0 1rem;
 		text-decoration: none;
 		text-transform: uppercase;
@@ -1408,6 +1408,8 @@ h3.middle-title {
 /* submenu styles */
 .menu {
 	.submenu {
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
 		left: 0;
 		max-height: 0;
 		position: absolute;
@@ -1431,10 +1433,19 @@ h3.middle-title {
 			-ms-transition: opacity .4s, -ms-transform .5s;
 			-o-transition: opacity .4s, -o-transform .5s;
 			transition: opacity .4s, transform .5s;
+			a {
+				background-color: #2b2d31;
+				color: #eee;
+				text-transform: none;
+				-webkit-transition: all 0.25s;
+				transition: all 0.25s;
+			}
 		}
 		li:hover a {
 			border-radius: 0;
-			color: #ffffff;
+			background-color: #222;
+			color: #fff;
+			padding-left: 1.563rem;
 		}
 	}
 	> li:hover .submenu,
