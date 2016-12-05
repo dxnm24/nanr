@@ -64,6 +64,10 @@
   </div>
 </div>
 
+@if($device != MOBILE)
+<a class="gotop" href="#" title="Lên đầu trang" rel="nofollow"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i></a>
+@endif
+
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
