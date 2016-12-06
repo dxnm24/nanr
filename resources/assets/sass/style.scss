@@ -1635,6 +1635,13 @@ a.gototop {
 	}
 	.side-tabs .box-tabs-inner, .box-inner {
 		padding: 0.625rem 0 0;
+		border: none;
+	    border-bottom: 1px solid #efefef;
+	}
+	.item .item-content {
+		border: none;
+		box-shadow: none;
+	    border-bottom: 1px solid #efefef;
 	}
 	body {
 		background: #fff;
