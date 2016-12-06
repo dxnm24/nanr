@@ -1624,8 +1624,9 @@ a.gototop {
 	.mup .pum p,
 	.swiper-slide a p,
 	.item .item-content p,
-	.post-list>.post-title>a,
-	h3.middle-title {
+	.post-list > .post-title > a,
+	h3.middle-title,
+	.search-title span {
 		font-size: 1.125rem;
 		border: none;
 	}
@@ -1648,12 +1649,33 @@ a.gototop {
 		border: none;
 		box-shadow: none;
 	    border-bottom: 1px solid #efefef;
+	    padding-left: 0;
+	    padding-right: 0;
 	}
 	body {
 		background: #fff;
 	}
 	.main {
 		padding: 0;
+	}
+	.post-large {
+		padding-top: 0.938rem;
+		padding-bottom: 0.625rem;
+		> h2 {
+			> a {
+				text-align: center;
+			}
+		}
+		> p {
+			font-size: 1.125rem;
+		}
+	}
+	.xhr {
+		padding-bottom: 0;
+	    margin-bottom: 1.875rem;
+	}
+	.breadcrumbs > li {
+		font-size: 0.875rem;
 	}
 }
 /* Medium and up */
