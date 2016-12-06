@@ -7,26 +7,27 @@
 				<a class="mobile-menuopen" data-toggle="mobile-menubox" aria-controls="mobile-menubox" aria-haspopup="true" tabindex="0"><i class="fa fa-bars" aria-hidden="true"></i></a>
 			</div>
 			<div class="small-9 columns">
-				<div class="logo">
+				<a href="/" class="logo"><img src="/img/logo.png" alt="Nấu Ăn Ngon Rẻ" /></a>
+				<!-- <div class="logo">
 					<a href="/">
 						<span class="logo-color-1">Nấu ăn</span>
 						<span class="logo-color-2">Ngon</span>
 						<span class="logo-color-3">Rẻ</span>
 					</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
 </header>
-<div class="row">
-	<div class="column">
-		<div class="mobile-search">
-			<form action="{{ route('site.search') }}" method="GET" class="search-form">
-				<input name="name" type="text" value="" class="search-input" placeholder="Tìm kiếm">
-				<a class="search-button" onclick="$('.search-form').submit()"><i class="fa fa-search" aria-hidden="true"></i></a>
-			</form>
+<div class="row column">
+	<form action="{{ route('site.search') }}" method="GET" class="search-form">
+		<div class="input-group">
+			<input name="name" type="text" value="" class="input-group-field" id="searchtext" placeholder="Tìm kiếm">
+			<div class="input-group-button">
+				<a class="button" onclick="$('.search-form').submit()"><i class="fa fa-search" aria-hidden="true"></i></a>
+			</div>
 		</div>
-	</div>
+    </form>
 </div>
 <div class="full reveal mobile-menubox" id="mobile-menubox" data-reveal>
 	<div class="mobile-menubox-head">

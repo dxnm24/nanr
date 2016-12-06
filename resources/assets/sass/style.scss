@@ -823,7 +823,7 @@ img.info-avatar {
 		display: block;
 		margin-top: 0.313rem;
 		i.fa {
-			color: #eee;
+			color: #888;
 			font-size: 1.875rem;
 		}
 	}
@@ -1619,10 +1619,23 @@ a.gototop {
 /* Small only */
 @media screen and (max-width: 39.9375em) {
 	.middle a span,
-	.mup a span,
-	.mup p {
-		font-size: 1rem;
+	.mup .pum a span,
+	.mup .pum p,
+	.swiper-slide a p,
+	.item .item-content p {
+		font-size: 1.125rem;
 	}
+	.item .item-content h2 a {
+		font-size: 1.250rem;
+	}
+	form.search-form {
+		padding-left: 0.938rem;
+		padding-right: 0.938rem;
+	}
+	.side-tabs .box-tabs-inner, .box-inner {
+		padding: 0.625rem 0 0;
+	}
+
 }
 /* Medium and up */
 @media screen and (min-width: 40em) {
