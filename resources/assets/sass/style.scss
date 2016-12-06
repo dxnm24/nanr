@@ -43,7 +43,7 @@ a {
 }
 a:hover,
 a:focus {
-	color: #ff8300;
+	color: #4db2ec;
 	text-decoration: none;
 }
 .clearfix {
@@ -75,7 +75,7 @@ a.logo {
 		max-width: 100%;
 	}
 	> span {
-		color: #FF8300;
+		color: #4db2ec;
 		font-weight: bold;
 	}
 }
@@ -169,7 +169,7 @@ header {
 	}
 }
 .item:hover h2 a {
-	color: #FF8300;
+	color: #4db2ec;
 }
 .search-title {
 	> h1 {
@@ -191,7 +191,7 @@ form.search-form {
 	    
 	}
 	.button {
-		background-color: #FF8300;
+		background-color: #4db2ec;
 		height: 2.5rem;
 		width: 3rem;
 		padding: 0;
@@ -205,7 +205,7 @@ form.search-form {
 		}
 	}
 	.button:focus, .button:hover {
-	    background-color: #FF8300;
+	    background-color: #4db2ec;
     	color: #fff;
     	i.fa {
 			font-size: 1.250rem;
@@ -223,7 +223,7 @@ form.search-form {
 }
 ul.box-tabs {
 	padding: 0.625rem 0 0 !important;
-    border-bottom: 1px solid #FF8300;
+    border-bottom: 1px solid #4db2ec;
     margin: 0;
 	> li.tabs-title {
 		list-style: none;
@@ -233,7 +233,7 @@ ul.box-tabs {
 			margin: 0;
 			> a {
 			    font-size: 1rem;
-			    color: #FF8300;
+			    color: #4db2ec;
 			    font-weight: bold;
 			    display: inline-block;
 			    padding: 0.313rem 0.625rem;
@@ -250,14 +250,14 @@ ul.box-tabs {
 	    display: inline-block;
 	    font-weight: 700;
 	    margin: 0;
-	    background: #FF8300;
+	    background: #4db2ec;
 	    padding: 0.313rem 0.625rem;
 	}
 	> h1, > strong {
 		background: transparent;
 	    text-transform: uppercase;
 	    font-size: 1.250rem;
-	    color: #FF8300;
+	    color: #4db2ec;
 	    padding-left: 0;
 	    padding-right: 0;
 	}
@@ -268,7 +268,7 @@ ul.box-tabs > li.is-active > h3 > a {
     display: inline-block;
     font-weight: 700;
     margin: 0;
-    background: #FF8300;
+    background: #4db2ec;
     padding: 0.313rem 0.625rem;
 }
 .posttypes {
@@ -279,7 +279,7 @@ ul.box-tabs > li.is-active > h3 > a {
 	border-bottom: 1px solid #efefef;
 }
 a.btn-seemore {
-    background-color: #FF8300;
+    background-color: #4db2ec;
     color: #fff;
     padding: 0.250rem 0.625rem;
     font-weight: bold;
@@ -332,7 +332,7 @@ a.btn-play i.fa {
 	color: #fff;
 }
 a.btn-play {
-	background-color: #FF8300;
+	background-color: #4db2ec;
 	-webkit-border-radius: 0.313rem;
 	border-radius: 0.313rem;
 	color: #fff;
@@ -365,7 +365,7 @@ a.btn-play {
 		}
 		a:hover,
 	    a:focus {
-			color: #FF8300;
+			color: #4db2ec;
 		}
 	}
 	h3 {
@@ -389,7 +389,7 @@ footer {
 	}
 	a:hover,
 	a:focus {
-		color: #FF8300;
+		color: #4db2ec;
 	}
 }
 .copy,
@@ -493,7 +493,7 @@ img.info-avatar {
 		}
 	}
 	.tags-icon {
-		background-color: #FF8300;
+		background-color: #4db2ec;
 		display: inline-block;
 		color: #fff;
 		margin-bottom: 0.313rem;
@@ -537,7 +537,7 @@ img.info-avatar {
 	    }
 	    a:hover, 
 	    a:focus {
-	    	color: #FF8300;
+	    	color: #4db2ec;
 	    }
     }
 }
@@ -562,7 +562,7 @@ img.info-avatar {
 		color: #888;
 	}
 	a {
-		background-color: #FF8300;
+		background-color: #4db2ec;
 		color: #fff;
 		padding: 0.500rem 1.000rem;
 	}
@@ -602,7 +602,7 @@ img.info-avatar {
     margin: 1.875rem 0 1.875rem;
     padding: 0;
     > h3 {
-    	border-left: 5px solid #FF8300;
+    	border-left: 5px solid #4db2ec;
     	color: #262626;
     	text-transform: uppercase;
     	font-size: 1.063rem;
@@ -624,12 +624,12 @@ img.info-avatar {
 			}
 			a:hover,
 		    a:focus {
-				color: #ff8300;
+				color: #4db2ec;
 				padding-left: 0.938rem;
 			}
 		}
 		li.current a {
-			color: #ff8300;
+			color: #4db2ec;
 		}
 	}
 }
@@ -661,7 +661,7 @@ img.info-avatar {
 		    }
 		    a:hover,
 		    a:focus {
-		    	color: #ff8300;
+		    	color: #4db2ec;
 		    }
 	    }
     }
@@ -744,7 +744,7 @@ img.info-avatar {
     border-bottom: 1px solid #efefef;
     padding-top: 0.938rem;
 	a {
-		color: #FF8300;
+		color: #4db2ec;
 		display: inline-block;
 		text-align: center;
 		text-decoration: none;
@@ -978,7 +978,7 @@ ul.mobile-menu {
 		}
 	}
 	strong {
-		border-left: 5px solid #FF8300;
+		border-left: 5px solid #4db2ec;
     	color: #262626;
     	text-transform: uppercase;
     	font-size: 1.063rem;
@@ -1094,7 +1094,7 @@ h3.middle-title {
 		}
 	}
 	.pum:hover a {
-		color: #ff8300;
+		color: #4db2ec;
 	}
 	.pum:last-child {
 		p {
@@ -1368,7 +1368,7 @@ h3.middle-title {
 		}
 		> a:hover,
 		> a:focus {
-			border-top-color: #ff8300;
+			border-top-color: #4db2ec;
 		}
 	}
 	> li:first-child {
@@ -1376,8 +1376,20 @@ h3.middle-title {
 	}
 	> li.current {
 		> a {
-			// color: #ff8300;
-			border-top-color: #ff8300;
+			// color: #4db2ec;
+			border-top-color: #4db2ec;
+		}
+	}
+	> li.hasChild {
+		> a:after {
+			content: "\f107";
+			display: inline-block;
+			font: normal normal normal 1rem/0 FontAwesome;
+			font-size: inherit;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			margin-left: 0.313rem;
 		}
 	}
 	li {
@@ -1386,8 +1398,8 @@ h3.middle-title {
 	li:hover {
 		background-color: #222;
 		> a {
-			// color: #ff8300;
-			border-top-color: #ff8300;
+			// color: #4db2ec;
+			border-top-color: #4db2ec;
 		}
 	}
 	a {
@@ -1580,7 +1592,7 @@ h3.middle-title {
 
 //go to top button
 a.gotop {
-	color: #ff8300;
+	color: #4db2ec;
 	position: fixed;
 	bottom: -2.500rem;
 	right: 1.875rem;
