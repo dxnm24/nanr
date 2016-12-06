@@ -1618,24 +1618,27 @@ a.gototop {
 // RESPONSIVE
 /* Small only */
 @media screen and (max-width: 39.9375em) {
+	.postinfo *,
+	.info *,
 	.middle a span,
-	.mup .pum a span,
 	.mup .pum p,
 	.swiper-slide a p,
-	.item .item-content p {
+	.item .item-content p,
+	.post-list>.post-title>a,
+	h3.middle-title {
 		font-size: 1.125rem;
+		border: none;
 	}
-	.item .item-content h2 a {
+	.item .item-content h2 a,
+	.mup .pum a span {
 		font-size: 1.250rem;
-	}
-	form.search-form {
-		padding-left: 0.938rem;
-		padding-right: 0.938rem;
 	}
 	.side-tabs .box-tabs-inner, .box-inner {
 		padding: 0.625rem 0 0;
 	}
-
+	.main {
+		padding: 0;
+	}
 }
 /* Medium and up */
 @media screen and (min-width: 40em) {
