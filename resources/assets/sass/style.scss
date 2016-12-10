@@ -228,16 +228,12 @@ ul.box-tabs {
 	> li.tabs-title {
 		list-style: none;
 		margin-right: 0.625rem;
-		> h3 {
-			font-size: 1.250rem;
-			margin: 0;
-			> a {
-			    font-size: 1rem;
-			    color: #4db2ec;
-			    font-weight: bold;
-			    display: inline-block;
-			    padding: 0.313rem 0.625rem;
-			}
+		> a {
+		    font-size: 0.750rem;
+		    color: #4db2ec;
+		    font-weight: bold;
+		    display: inline-block;
+		    padding: 0.750rem 0;
 		}
 	}
 	
@@ -262,8 +258,8 @@ ul.box-tabs {
 	    padding-right: 0;
 	}
 }
-ul.box-tabs > li.is-active > h3 > a {
-	font-size: 1rem;
+ul.box-tabs > li.is-active > a {
+	font-size: 0.750rem;
     color: #fff;
     display: inline-block;
     font-weight: 700;
@@ -1014,7 +1010,7 @@ ul.mobile-menu {
 h3.middle-title {
 	border: none;
 	padding: 0 0 0.313rem 0;
-	font-weight: normal;
+	font-weight: 700;
 	text-transform: uppercase;
 	font-size: 1rem;
 }
@@ -1050,14 +1046,12 @@ h3.middle-title {
 	ul.box-tabs {
 		> li.tabs-title {
 			margin: 0;
-			width: 50%;
-			> h3 {
-				> a {
-					width: 100%;
-					text-align: center;
-					padding: 0.500rem 0.625rem;
-					text-transform: uppercase;
-				}
+			width: 33%;
+			> a {
+				width: 100%;
+				text-align: center;
+				padding: 0.750rem 0;
+				text-transform: uppercase;
 			}
 		}
 	}

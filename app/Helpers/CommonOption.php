@@ -107,6 +107,7 @@ class CommonOption
         return array(
             SLIDER1=>'Slider đầu trang', 
             SLIDER2=>'Slider cuối trang', 
+            SLIDER3=>'Hot Tips', 
         );
     }
     static function getSliderType($sliderType=SLIDER1)

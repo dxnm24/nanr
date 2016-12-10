@@ -24,9 +24,19 @@ class AppServiceProvider extends ServiceProvider
             ->orderBy('id', 'desc')
             ->get();
         view()->share('sliders', $sliders);
+        //middle
+        $middle = DB::table('sliders')
+            ->select('id', 'name', 'url', 'image')
+            ->where('status', ACTIVE)
+            ->where('type', SLIDER3)
+            ->limit(PAGINATE_MIDDLE)
+            ->orderByRaw(DB::raw("position = '0', position"))
+            ->orderBy('id', 'desc')
+            ->get();
+        view()->share('middlearchives', $middle);
         //post data
         view()->share('latesarchives', self::getArchives());
-        view()->share('populararchives', self::getArchives('view','desc',PAGINATE_MIDDLE));
+        view()->share('populararchives', self::getArchives('view','desc'));
         //get config data
         $config = DB::table('configs')->first();
         view()->share('configcode', $config->code);

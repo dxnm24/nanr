@@ -20,10 +20,13 @@
 <div class="side side-tabs">
 	<ul class="box-tabs clearfix" data-tabs id="box-tabs-side">
 		<li class="tabs-title is-active">
-			<h3><a href="#tab1" aria-selected="true" rel="nofollow">Mới nhất</a></h3>
+			<a href="#tab1" aria-selected="true" rel="nofollow">Mới nhất</a>
 		</li>
 		<li class="tabs-title">
-			<h3><a href="#tab2" rel="nofollow">Chuyên mục</a></h3>
+			<a href="#tab2" rel="nofollow">Đọc nhiều</a>
+		</li>
+		<li class="tabs-title">
+			<a href="#tab3" rel="nofollow">Chuyên mục</a>
 		</li>
 	</ul>
 	<div class="box-inner box-tabs-inner" data-tabs-content="box-tabs-side">
@@ -47,6 +50,25 @@
 			@endif
 		</div>
 		<div class="tabs-panel" id="tab2">
+			@if($populararchives)
+			<div class="mup">
+				@foreach($populararchives as $key => $value)
+				<?php 
+					// $thumbnail = str_replace('/images/', '/thumbs/', $value->image);
+					// $thumbnail = str_replace('/thumb/', '/', $thumbnail);
+				?>
+				<div class="pum">
+					<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
+						<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+						<span>{!! $value->name !!}</span>
+					</a>
+					<p>{!! $value->summary !!}</p>
+				</div>
+				@endforeach
+			</div>
+			@endif
+		</div>
+		<div class="tabs-panel" id="tab3">
 			{!! $sidemenu !!}
 		</div>
 	</div>

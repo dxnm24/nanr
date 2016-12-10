@@ -24,7 +24,7 @@ define('PAGINATE', 12);
 define('PAGINATE_BOX', 6);
 define('PAGINATE_GRID', 12);
 define('PAGINATE_SIDE', 4);
-define('PAGINATE_MIDDLE', 8);
+define('PAGINATE_MIDDLE', 12);
 define('PAGINATE_BOX_1', 5);
 define('PAGINATE_BOX_2', 3);
 define('PAGINATE_BOX_3', 6);
@@ -54,5 +54,6 @@ define('DISPLAY_TYPE_5', 5);
 //SLIDER
 define('SLIDER1', 1); // slider on top home page
 define('SLIDER2', 2); // slider on bottom page
+define('SLIDER3', 3); // middle post
 // replace string
 define('CONTACTFORM', '/%ContactForm%/');
