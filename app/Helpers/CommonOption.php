@@ -33,7 +33,7 @@ class CommonOption
         return array(
             MENUTYPE1=>'Menu đầu trang', 
             MENUTYPE2=>'Menu cột bên', 
-            MENUTYPE3=>'Menu cuối trang',
+            // MENUTYPE3=>'Menu cuối trang',
             MENUTYPE4=>'Menu mobile',
         );
     }
