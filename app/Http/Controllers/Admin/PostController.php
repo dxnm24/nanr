@@ -43,10 +43,10 @@ class PostController extends Controller
                 $query = $query->where('type', $request->type);
             }
             if($request->type_id != '') {
-                $listGameId = DB::table('post_type_relations')
+                $listPostId = DB::table('post_type_relations')
                     ->where('type_id', $request->type_id)
                     ->pluck('post_id');
-                $query = $query->whereIn('id', $listGameId);
+                $query = $query->whereIn('id', $listPostId);
             }
             if($request->seri != '') {
                 $query = $query->where('seri', $request->seri);
@@ -124,9 +124,9 @@ class PostController extends Controller
                 'lang' => $request->lang,
             ]);
         if($data) {
-            // insert game type relation
+            // insert post type relation
             $data->posttypes()->attach($request->type_id);
-            // insert game tag relation
+            // insert post tag relation
             $data->posttags()->attach($request->tag_id);
         }
         Cache::flush();
@@ -205,13 +205,13 @@ class PostController extends Controller
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);
-        // update game type relation
+        // update post type relation
         if($request->type_id) {
             $data->posttypes()->sync($request->type_id);
         } else {
             $data->posttypes()->detach();
         }
-        // update game tag relation
+        // update post tag relation
         if($request->tag_id) {
             $data->posttags()->sync($request->tag_id);
         } else {

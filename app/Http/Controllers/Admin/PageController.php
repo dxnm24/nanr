@@ -70,7 +70,7 @@ class PageController extends Controller
         trimRequest($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'slug' => 'required|max:255|unique:games|unique:game_types|unique:pages',
+            'slug' => 'required|max:255|unique:posts|unique:post_types|unique:pages',
             'summary' => 'max:1000',
             'image' => 'max:255',
             'meta_title' => 'max:255',
@@ -142,7 +142,7 @@ class PageController extends Controller
             'meta_image' => 'max:255',
         ];
         if($request->slug != $data->slug) {
-            $rules['slug'] = 'required|max:255|unique:games|unique:game_types|unique:pages';
+            $rules['slug'] = 'required|max:255|unique:posts|unique:post_types|unique:pages';
         }
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {

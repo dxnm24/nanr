@@ -1356,7 +1356,7 @@ h3.middle-title {
 		float: left;
 		position: relative;
 		> a {
-			padding: 1rem;
+			padding: 1rem 0.625rem;
 			border-top: 3px solid transparent;
 			border-right: 1px solid #343434;
 		}
@@ -1399,7 +1399,7 @@ h3.middle-title {
 	a {
 		color: #fff;
 		display: block;
-		font-size: 0.938rem;
+		font-size: 0.875rem;
 		line-height: 50px;
 		padding: 0 1rem;
 		text-decoration: none;
