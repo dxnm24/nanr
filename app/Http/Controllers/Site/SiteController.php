@@ -168,9 +168,9 @@ class SiteController extends Controller
             $cacheName = $cacheName.'_mobile';
         }
         //get cache
-        // if(Cache::has($cacheName)) {
-        //     return Cache::get($cacheName);
-        // }
+        if(Cache::has($cacheName)) {
+            return Cache::get($cacheName);
+        }
         // IF SLUG IS PAGE
         //query
         $singlePage = DB::table('pages')->where('slug', $slug)->where('status', ACTIVE)->first();
