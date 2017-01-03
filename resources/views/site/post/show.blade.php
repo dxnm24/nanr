@@ -66,6 +66,7 @@
 					@if(isset($postMaterial))
 					<div class="column material">
 						<strong>Thành Phần Nguyên Liệu</strong>
+						<!-- <p>Mời bạn bấm chọn vào thành phần để xem chi tiết cách làm nguyên liệu nhé!</p> -->
 						<div class="row small-up-2 medium-up-3 large-up-5">
 						@foreach($postMaterial as $value)
 							<div class="column">
