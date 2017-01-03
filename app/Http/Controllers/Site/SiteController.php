@@ -340,6 +340,22 @@ class SiteController extends Controller
             } else {
                 $typeMainParent = null;
             }
+            // material
+            if(!empty($post->post_material)) {
+                $postMaterial = explode(',', $post->post_material);
+                foreach($postMaterial as $value) {
+                    $materialData = DB::table('posts')->select('id', 'name', 'slug', 'material', 'material_image')->where('id', $value)->where('status', ACTIVE)->first();
+                    if(count($materialData) > 0) {
+                        $value->id = $materialData->id;
+                        $value->name = $materialData->name;
+                        $value->slug = $materialData->slug;
+                        $value->material = $materialData->material;
+                        $value->material_image = $materialData->material_image;
+                    }
+                }
+            } else {
+                $postMaterial = null;
+            }
             //auto meta tag for seo
             if(empty($post->meta_title)) {
                 $post->meta_title = $post->name.' | '.$post->name.' tại nauanngonre.com';
@@ -364,6 +380,7 @@ class SiteController extends Controller
                     'seri' => $seri, 
                     'seriParent' => $seriParent, 
                     'typeMainParent' => $typeMainParent, 
+                    'postMaterial' => $postMaterial, 
                 ])->render();
             Cache::forever($cacheName, $html);
             //return view
@@ -378,6 +395,7 @@ class SiteController extends Controller
                     'seri' => $seri, 
                     'seriParent' => $seriParent, 
                     'typeMainParent' => $typeMainParent, 
+                    'postMaterial' => $postMaterial, 
                 ]);
         }
         return response()->view('errors.404', [], 404);

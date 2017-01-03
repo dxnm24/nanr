@@ -14,7 +14,7 @@
 </div>
 @elseif(isset($isEdit))
 <?php 
-	$dataMaterial = CommonPost::getArrayPostMaterial($data->id);
+	$dataMaterial = CommonPost::getArrayPostMaterial();
 	$issetPostMaterial = CommonPost::issetPostMaterial($data->id);
 ?>
 <div class="box-body table-responsive no-padding">

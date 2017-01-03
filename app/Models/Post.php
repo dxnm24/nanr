@@ -9,7 +9,7 @@ class Post extends Model
 	//type: post, gallery, video...
 	//url: link direct download...
     protected $fillable = [
-        'name', 'slug', 'type_main_id', 'seri', 'related', 'type', 'url', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'position', 'start_date', 'view', 'is_material', 'material', 'post_material', 'status', 'lang',
+        'name', 'slug', 'type_main_id', 'seri', 'related', 'type', 'url', 'summary', 'description', 'image', 'meta_title', 'meta_keyword', 'meta_description', 'meta_image', 'position', 'start_date', 'view', 'is_material', 'material', 'post_material', 'material_image', 'status', 'lang',
     ];
     public function posttyperelations()
     {

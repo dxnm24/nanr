@@ -62,6 +62,24 @@
 		<div class="postinfo">
 			<div class="info">
 				<div class="row">
+					<div class="column description">{!! $post->summary !!}</div>
+					@if(isset($postMaterial))
+					<div class="material">
+						<strong>Thành Phần Nguyên Liệu</strong>
+						<div class="row small-up-2 medium-up-3 large-up-5">
+						@foreach($postMaterial as $value)
+							<div class="column">
+								<div class="callout material-list clearfix">
+									<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
+										<img src="{{ $value->material_image }}" alt="{!! $value->name !!}" />
+										<p>{!! $value->material !!}</p>
+									</a>
+								</div>
+							</div>
+						@endforeach
+						</div>
+					</div>
+					@endif
 					<div class="column description">{!! $post->description !!}</div>
 					<div class="column description">
 						@include('site.common.social')

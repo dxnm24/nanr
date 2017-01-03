@@ -102,6 +102,7 @@ class PostController extends Controller
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
             'material' => 'max:255',
+            'material_image' => 'max:255',
         ]);
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -127,6 +128,7 @@ class PostController extends Controller
                 'is_material' => $request->is_material,
                 'material' => $request->material,
                 'post_material' => isset($request->post_material)?implode(',', $request->post_material):'',
+                'material_image' => CommonMethod::removeDomainUrl($request->material_image),
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);
@@ -186,6 +188,7 @@ class PostController extends Controller
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
             'material' => 'max:255',
+            'material_image' => 'max:255',
         ];
         if($request->slug != $data->slug) {
             $rules['slug'] = 'required|max:255|unique:posts|unique:post_types';
@@ -213,6 +216,7 @@ class PostController extends Controller
                 'is_material' => $request->is_material,
                 'material' => $request->material,
                 'post_material' => isset($request->post_material)?implode(',', $request->post_material):'',
+                'material_image' => CommonMethod::removeDomainUrl($request->material_image),
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);

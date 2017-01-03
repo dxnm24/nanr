@@ -70,12 +70,11 @@ class CommonPost
 		}
 		return [];
 	}
-	static function getArrayPostMaterial($postId)
+	static function getArrayPostMaterial()
     {
         $data = DB::table('posts')
         	->where('status', ACTIVE)
         	->where('is_material', ACTIVE)
-        	->where('id', '!=', $postId)
         	->pluck('material', 'id');
         if(count($data) > 0) {
             return $data;

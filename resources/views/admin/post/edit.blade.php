@@ -102,6 +102,22 @@
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label>Ảnh nguyên liệu</label>
+								<p>Kích cỡ: 100x100. Định dạng jpg, jpeg, png. Tên thư mục & ảnh phải là không dấu, không chứa dấu cách + kí tự đặc biệt. Dung lượng ảnh nhẹ (< 1mb)<br>Auto crop thumbnail: 420x270</p>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="row">
+											<div class="col-sm-7">
+												<input name="material_image" type="text" value="{{ $data->material_image }}" class="form-control" readonly id="url_abs3" onchange="GetFilenameFromPath2('url_abs3');">
+											</div>
+											<div class="col-sm-5">
+									            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs3" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 							@include('admin.post.postmaterial', array('isEdit' => true, 'data' => $data))
 						</div>
 					</div>
