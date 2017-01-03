@@ -168,9 +168,9 @@ class SiteController extends Controller
             $cacheName = $cacheName.'_mobile';
         }
         //get cache
-        if(Cache::has($cacheName)) {
-            return Cache::get($cacheName);
-        }
+        // if(Cache::has($cacheName)) {
+        //     return Cache::get($cacheName);
+        // }
         // IF SLUG IS PAGE
         //query
         $singlePage = DB::table('pages')->where('slug', $slug)->where('status', ACTIVE)->first();
@@ -342,15 +342,16 @@ class SiteController extends Controller
             }
             // material
             if(!empty($post->post_material)) {
-                $postMaterial = explode(',', $post->post_material);
-                foreach($postMaterial as $value) {
+                $postMaterialData = explode(',', $post->post_material);
+                $postMaterial = null;
+                foreach($postMaterialData as $key => $value) {
                     $materialData = DB::table('posts')->select('id', 'name', 'slug', 'material', 'material_image')->where('id', $value)->where('status', ACTIVE)->first();
                     if(count($materialData) > 0) {
-                        $value->id = $materialData->id;
-                        $value->name = $materialData->name;
-                        $value->slug = $materialData->slug;
-                        $value->material = $materialData->material;
-                        $value->material_image = $materialData->material_image;
+                        $postMaterial[$key]['id'] = $materialData->id;
+                        $postMaterial[$key]['name'] = $materialData->name;
+                        $postMaterial[$key]['slug'] = $materialData->slug;
+                        $postMaterial[$key]['material'] = $materialData->material;
+                        $postMaterial[$key]['material_image'] = $materialData->material_image;
                     }
                 }
             } else {

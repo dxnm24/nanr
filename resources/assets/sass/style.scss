@@ -1609,10 +1609,13 @@ a.gototop {
 
 //material
 .material {
+	margin-top: 1.250rem;
+	margin-bottom: 1.250rem;
 	> strong {
 		display: block;
 		font-size: 1.250rem;
 		text-align: center;
+		margin-bottom: 1.250rem;
 	}
 	.material-list {
 		text-align: center;
