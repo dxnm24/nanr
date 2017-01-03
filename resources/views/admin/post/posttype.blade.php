@@ -2,7 +2,7 @@
 <?php 
 	$dataType = CommonQuery::getAllWithStatus('post_types', ACTIVE, 1);
 ?>
-<div class="box-body table-responsive">
+<div class="box-body table-responsive no-padding">
 	<h4>Thể loại post</h4>
 	<div class="overflow-box">
 		@if($dataType)
@@ -33,7 +33,7 @@
 <?php 
 	$dataType = CommonQuery::getAllWithStatus('post_types', ACTIVE, 1);
 ?>
-<div class="box-body table-responsive">
+<div class="box-body table-responsive no-padding">
 	<h4>Thể loại post</h4>
 	<div class="overflow-box">
 		@if($dataType)
