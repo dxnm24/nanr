@@ -51,6 +51,9 @@ class PostController extends Controller
             if($request->seri != '') {
                 $query = $query->where('seri', $request->seri);
             }
+            if($request->is_material != '') {
+                $query = $query->where('is_material', $request->is_material);
+            }
             if($request->status != '') {
                 $query = $query->where('status', $request->status);
             }
@@ -98,6 +101,7 @@ class PostController extends Controller
             'meta_keyword' => 'max:255',
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
+            'material' => 'max:255',
         ]);
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -120,6 +124,9 @@ class PostController extends Controller
                 'position' => 1,
                 'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
                 'view' => 0,
+                'is_material' => $request->is_material,
+                'material' => $request->material,
+                'post_material' => isset($request->post_material)?implode(',', $request->post_material):'',
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);
@@ -178,6 +185,7 @@ class PostController extends Controller
             'meta_keyword' => 'max:255',
             'meta_description' => 'max:255',
             'meta_image' => 'max:255',
+            'material' => 'max:255',
         ];
         if($request->slug != $data->slug) {
             $rules['slug'] = 'required|max:255|unique:posts|unique:post_types';
@@ -202,6 +210,9 @@ class PostController extends Controller
                 'meta_description' => $request->meta_description,
                 'meta_image' => CommonMethod::removeDomainUrl($request->meta_image),
                 'start_date' => CommonMethod::datetimeConvert($request->start_date, $request->start_time),
+                'is_material' => $request->is_material,
+                'material' => $request->material,
+                'post_material' => isset($request->post_material)?implode(',', $request->post_material):'',
                 'status' => $request->status,
                 'lang' => $request->lang,
             ]);

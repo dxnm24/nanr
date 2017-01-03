@@ -58,4 +58,28 @@ class CommonPost
 		}
 		return [];
 	}
+	// metarial
+	static function issetPostMaterial($postId)
+	{
+		$data = DB::table('posts')
+			->select('post_material')
+			->where('id', $postId)
+			->first();
+		if(count($data) > 0) {
+			return explode(',', $data->post_material);
+		}
+		return [];
+	}
+	static function getArrayPostMaterial($postId)
+    {
+        $data = DB::table('posts')
+        	->where('status', ACTIVE)
+        	->where('is_material', ACTIVE)
+        	->where('id', '!=', $postId)
+        	->pluck('material', 'id');
+        if(count($data) > 0) {
+            return $data;
+        }
+        return null;
+    }
 }

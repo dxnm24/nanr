@@ -32,6 +32,9 @@ class CreatePostTable extends Migration
             $table->integer('position');
             $table->string('start_date');
             $table->integer('view');
+            $table->integer('is_material')->default(INACTIVE);
+            $table->string('material');
+            $table->string('post_material');
             $table->integer('status')->default(ACTIVE);
             $table->string('lang')->default(VI);
             $table->timestamps();

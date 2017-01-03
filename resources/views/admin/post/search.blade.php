@@ -19,6 +19,10 @@
 			  	{{ Form::select('seri', array(''=>'-- chọn',0=>'Chưa có seri'), $request->seri, array('class' =>'form-control')) }}
 			</div>
 			<div class="input-group" style="width: 150px; display:inline-block;">
+				<label>Nguyên liệu</label>
+			  	{{ Form::select('is_material', array_add(CommonOption::statusArray(), '', '-- chọn'), $request->is_material, array('class' =>'form-control')) }}
+			</div>
+			<div class="input-group" style="width: 150px; display:inline-block;">
 				<label>Trạng thái</label>
 			  	{{ Form::select('status', array_add(CommonOption::statusArray(), '', '-- chọn'), $request->status, array('class' =>'form-control')) }}
 			</div>

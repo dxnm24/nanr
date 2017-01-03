@@ -2,7 +2,7 @@
 <?php 
 	$dataTag = CommonQuery::getArrayWithStatus('post_tags');
 ?>
-<div class="box-body table-responsive">
+<div class="box-body table-responsive no-padding">
 	<h4>Post Tags</h4>
 	<div class="overflow-box">
 		@if($dataTag)
@@ -17,7 +17,7 @@
 	$dataTag = CommonQuery::getArrayWithStatus('post_tags');
 	$issetPostTag = CommonPost::issetPostTag($data->id);
 ?>
-<div class="box-body table-responsive">
+<div class="box-body table-responsive no-padding">
 	<h4>Post Tags</h4>
 	<div class="overflow-box">
 		@if($dataTag)

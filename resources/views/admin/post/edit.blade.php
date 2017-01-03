@@ -86,6 +86,23 @@
 						<div class="col-sm-4">
 							@include('admin.post.posttype', array('isEdit' => true, 'data' => $data))
 							@include('admin.post.posttag', array('isEdit' => true, 'data' => $data))
+							<div class="form-group">
+								<label>Đây là bài viết thành phần/nguyên liệu</label>
+								<div class="row">
+									<div class="col-sm-12">
+										{!! Form::select('is_material', CommonOption::statusArray(), $data->is_material, array('class' =>'form-control')) !!}
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Tên thành phần/nguyên liệu</label>
+								<div class="row">
+									<div class="col-sm-12">
+										<input name="material" type="text" value="{{ $data->material }}" class="form-control">
+									</div>
+								</div>
+							</div>
+							@include('admin.post.postmaterial', array('isEdit' => true, 'data' => $data))
 						</div>
 					</div>
 				</div>
