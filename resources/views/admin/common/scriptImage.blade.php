@@ -70,6 +70,7 @@
 	//        paste_convert_word_fake_lists: false,
 	        external_filemanager_path:"/adminlte/plugins/tinymce/plugins/filemanager/",
 	        filemanager_title:"Quản lý tập tin" ,
+	        filemanager_access_key:"{{ AKEY }}",
 	        external_plugins: { "filemanager" : "plugins/filemanager/plugin.min.js"}
 	     });
 	}

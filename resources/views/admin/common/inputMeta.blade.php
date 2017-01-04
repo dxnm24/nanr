@@ -33,7 +33,7 @@
 			<input name="meta_image" type="text" value="{{ old('meta_image') }}" class="form-control" readonly id="url_abs1" onchange="GetFilenameFromPath2('url_abs1');">
 		</div>
 		<div class="col-sm-3">
-            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs1" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>
+            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs1&akey={{ AKEY }}" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>
 		</div>
 	</div>
 </div>
@@ -73,7 +73,7 @@
 			<input name="meta_image" type="text" value="{{ $data->meta_image }}" class="form-control" readonly id="url_abs1" onchange="GetFilenameFromPath2('url_abs1');">
 		</div>
 		<div class="col-sm-3">
-            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs1" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>
+            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs1&akey={{ AKEY }}" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>
 		</div>
 	</div>
 </div>

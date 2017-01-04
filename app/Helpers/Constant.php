@@ -57,3 +57,5 @@ define('SLIDER2', 2); // slider on bottom page
 define('SLIDER3', 3); // middle post
 // replace string
 define('CONTACTFORM', '/%ContactForm%/');
+//responsive filemanager
+define('AKEY', 'db0ac2431a2e87c54852dbb0e7b9ed3d');

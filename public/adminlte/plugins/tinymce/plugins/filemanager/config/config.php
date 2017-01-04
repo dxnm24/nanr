@@ -42,17 +42,18 @@ $thumbs_base_path = '../../../../../thumbs/'; // relative path from filemanager 
 // filemanager_title:"Filemanager" ,
 // filemanager_access_key:"myPrivateKey" ,
 // ...
-define('USE_ACCESS_KEYS', FALSE); // TRUE or FALSE
+define('USE_ACCESS_KEYS', TRUE); // TRUE or FALSE
 
 // add access keys eg: array('myPrivateKey', 'someoneElseKey');
 // keys should only containt (a-z A-Z 0-9 \ . _ -) characters
 // if you are integrating lets say to a cms for admins, i recommend making keys randomized something like this:
-// $username = 'Admin';
-// $salt = 'dsflFWR9u2xQa' (a hard coded string)
+// $username = 'madraon';
+// $salt = 'ass2NXS3i9yVq'; //(a hard coded string)
 // $akey = md5($username.$salt);
+$akey = 'db0ac2431a2e87c54852dbb0e7b9ed3d';
 // DO NOT use 'key' as access key!
 // Keys are CASE SENSITIVE!
-$access_keys = array();
+$access_keys = array('akey', $akey);
 
 //--------------------------------------------------------------------------------------------------------
 // YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS
