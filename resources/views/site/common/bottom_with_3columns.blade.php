@@ -21,7 +21,7 @@
 		</div>
 		<div class="medium-4 columns">
 			<div class="bot">
-				<a href="/" class="logo" rel="nofollow"><img src="/img/logo.png" alt="Công Thức Nấu Ăn Ngon Rẻ" /></a>
+				<a href="{{ url('/') }}" class="logo" rel="nofollow"><img src="/img/logo.png" alt="Công Thức Nấu Ăn Ngon Rẻ" /></a>
 				@if($configcredit)
 				<p>{!! $configcredit !!}</p>
 				@endif
@@ -50,6 +50,6 @@
 </div>
 <footer>
 	<div class="row column">
-		<p class="copy">© MMXVI <a href="/" target="_blank" rel="nofollow">nauanngonre.com</a> - <span class="made-with-love">Made with ❤ in Kitchen</span> - <a href="/chinh-sach-bao-mat">Privacy & Terms</a></p>
+		<p class="copy">© MMXVI <a href="{{ url('/') }}" target="_blank" rel="nofollow">nauanngonre.com</a> - <span class="made-with-love">Made with ❤ in Kitchen</span> - <a href="{{ url('/chinh-sach-bao-mat') }}">Privacy & Terms</a></p>
 	</div>
 </footer>

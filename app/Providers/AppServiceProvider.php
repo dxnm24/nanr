@@ -102,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
             foreach($sub as $value) {
                 $hasChild = self::_hasChild($value->id);
                 $classHasChild = ($hasChild)?' class="hasChild"':'';
-                $output .= '<li '.checkCurrent(url($value->url)).$classHasChild.'><a href="'.$value->url.'">'.$value->name.'</a>';
+                $output .= '<li '.checkCurrent(url($value->url)).$classHasChild.'><a href="'.url($value->url).'">'.$value->name.'</a>';
                 if($hasChild) {
                     if($type==MENUTYPE1) {
                         $output .= '<ul class="submenu">';
