@@ -8,13 +8,6 @@
 			</div>
 			<div class="small-9 columns">
 				<a href="{{ url('/') }}" class="logo"><img src="/img/logo.png" alt="Nấu Ăn Ngon Rẻ" /></a>
-				<!-- <div class="logo">
-					<a href="/">
-						<span class="logo-color-1">Nấu ăn</span>
-						<span class="logo-color-2">Ngon</span>
-						<span class="logo-color-3">Rẻ</span>
-					</a>
-				</div> -->
 			</div>
 		</div>
 	</div>
