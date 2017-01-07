@@ -11,12 +11,14 @@ class Menu extends Model
     ];
     public static function getListMenu($currentId=null)
     {
-    	$menus = self::where('status', ACTIVE);
-    	if($currentId == null) {
-    		$menus = $menus->lists('name', 'id')->toArray();
-    	} else {
-    		$menus = $menus->where('id', '!=' , $currentId)->lists('name', 'id')->toArray();
-    	}
-    	return array_merge(['0'=>'Không'], $menus);
+        $menus = self::where('status', ACTIVE);
+        if($currentId == null) {
+            $menus = $menus->lists('name', 'id')->toArray();
+            return array_add($menus, '', 'Không');
+        } else {
+            $menus = $menus->where('id', '!=' , $currentId)->lists('name', 'id')->toArray();
+            return array_add($menus, '0', 'Không');
+        }
+        
     }
 }
