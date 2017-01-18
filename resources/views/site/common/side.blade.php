@@ -41,9 +41,9 @@
 				<div class="pum">
 					<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
 						<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
-						<span>{!! $value->name !!}</span>
+						<h3>{!! $value->name !!}</h3>
 					</a>
-					<p>{!! $value->summary !!}</p>
+					<p>{!! limit_text($value->summary, 200) !!}</p>
 				</div>
 				@endforeach
 			</div>
@@ -60,9 +60,9 @@
 				<div class="pum">
 					<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
 						<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
-						<span>{!! $value->name !!}</span>
+						<h3>{!! $value->name !!}</h3>
 					</a>
-					<p>{!! $value->summary !!}</p>
+					<p>{!! limit_text($value->summary, 200) !!}</p>
 				</div>
 				@endforeach
 			</div>

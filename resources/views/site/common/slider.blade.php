@@ -5,7 +5,7 @@
       <div class="swiper-container">
           <div class="swiper-wrapper">
             @foreach($sliders as $key => $value)
-              <div class="swiper-slide"><a href="{{ url($value->url) }}" title="{!! $value->name !!}"><img src="{{ $value->image }}" alt="{!! $value->name !!}" /><p>{!! $value->name !!}</p></a></div>
+              <div class="swiper-slide"><a href="{{ url($value->url) }}" title="{!! $value->name !!}"><img src="{{ $value->image }}" alt="{!! $value->name !!}" /><h3>{!! $value->name !!}</h3></a></div>
             @endforeach
           </div>
           <div class="swiper-button-prev"></div>

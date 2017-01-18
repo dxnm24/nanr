@@ -8,7 +8,7 @@
 				</a>
 				<div class="item-content">
 					<h2><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
-					<p>{!! $value->summary !!}</p>
+					<p>{!! limit_text($value->summary, 200) !!}</p>
 				</div>
 			</div>
 		</div>
