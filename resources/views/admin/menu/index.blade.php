@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('admin.menu.search')
+
 <div class="row margin-bottom">
 	<div class="col-xs-12">
 		<a href="{{ route('admin.menu.create') }}" class="btn btn-primary">Thêm menu</a>

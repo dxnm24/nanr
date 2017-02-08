@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+
+    public function __construct()
+    {
+        if(Auth::guard('admin')->user()->role_id != ADMIN) {
+            dd('Permission denied! Please back!');
+        }
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -56,7 +64,7 @@ class AccountController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'role_id' => $request->role_id,
-                'status' => ACTIVE,
+                'status' => $request->status,
             ]);
         return redirect()->route('admin.account.index')->with('success', 'Thêm thành công');
     }
@@ -105,6 +113,7 @@ class AccountController extends Controller
         $data->update([
                 'name' => $request->name,
                 'role_id' => $request->role_id,
+                'status' => $request->status,
             ]);
         return redirect()->route('admin.account.index')->with('success', 'Sửa thành công');
     }
@@ -142,5 +151,20 @@ class AccountController extends Controller
                 'password' => $request->password,
             ]);
         return redirect()->route('admin.account.index')->with('success', 'Sửa thành công');
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $id = $request->id;
+        $field = $request->field;
+        if($id) {
+            $data = Admin::find($id);    
+            if(count($data) > 0) {
+                $status = ($data->$field == ACTIVE)?INACTIVE:ACTIVE;
+                $data->update([$field=>$status]);
+                return 1;
+            }
+        }
+        return 0;
     }
 }

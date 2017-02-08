@@ -43,14 +43,15 @@
 						<label for="type">Loại menu</label>
 						<div class="row">
 							<div class="col-sm-8">
-							{!! Form::select('type', $optionMenuType, $data->type, array('class' =>'form-control')) !!}
+							{!! Form::select('type', $optionMenuType, $data->type, array('class' =>'form-control', 'onchange' => 'updateParentIdSelectBox()')) !!}
 							</div>
 						</div>
 					</div>
 					<div class="form-group">  <!-- style="display: none;" -->
 						<label for="parent_id">Menu cha</label>
 						<div class="row">
-							<div class="col-sm-8">
+							{{ Form::hidden('parentId', $data->parent_id) }}
+							<div class="col-sm-8" id="ParentIdSelectBox">
 							{!! Form::select('parent_id', $optionMenus, $data->parent_id, array('class' =>'form-control')) !!}
 							</div>
 						</div>
@@ -96,4 +97,5 @@
 	</div>
 </div>
 @include('admin.common.scriptImage')
+@include('admin.menu.script')
 @stop

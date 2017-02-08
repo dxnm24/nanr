@@ -13,6 +13,14 @@ use Cache;
 
 class AdController extends Controller
 {
+
+    public function __construct()
+    {
+        if(Auth::guard('admin')->user()->role_id != ADMIN) {
+            dd('Permission denied! Please back!');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -6,7 +6,7 @@
 	<div class="column">
 		<div class="callout post-grid clearfix">
 			<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-				<img src="{{ $value->image }}" alt="{!! $value->name !!}" />
+				<img src="{{ url($value->image) }}" alt="{!! $value->name !!}" />
 				<h2>{!! $value->name !!}</h2>
 			</a>
 		</div>

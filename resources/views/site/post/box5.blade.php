@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="medium-6 columns">
 		<a href="{{ url($data[0]->slug) }}" title="{!! $data[0]->name !!}">
-			<img src="{{ $data[0]->image }}" alt="{!! $data[0]->name !!}" />
+			<img src="{{ url($data[0]->image) }}" alt="{!! $data[0]->name !!}" />
 		</a>
 	</div>
 	<div class="medium-6 columns">
@@ -28,7 +28,7 @@
 		<div class="callout post-list clearfix">
 			<div class="post-image">
 				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-					<img src="{{ $thumbnail }}" alt="{!! $value->name !!}" />
+					<img src="{{ url($thumbnail) }}" alt="{!! $value->name !!}" />
 				</a>
 			</div>
 			<div class="post-title">

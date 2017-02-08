@@ -21,13 +21,43 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Menu::orderBy('type', 'asc')
+        trimRequest($request);
+        if($request->except('page')) {
+            $data = self::searchMenu($request);
+        } else {
+            $data = Menu::orderBy('type', 'asc')
                     ->orderByRaw(DB::raw("position = '0', position"))
                     ->orderBy('name', 'asc')
                     ->paginate(PAGINATION);
-        return view('admin.menu.index', ['data' => $data]);
+        }
+        $optionMenuType = CommonOption::menuTypeArray();
+        return view('admin.menu.index', ['data' => $data, 'request' => $request, 'optionMenuType' => $optionMenuType]);
+    }
+
+    private function searchMenu($request)
+    {
+        $data = DB::table('menus')->where(function ($query) use ($request) {
+            if ($request->name != '') {
+                $query = $query->where('name', 'like', '%'.$request->name.'%');
+            }
+            if ($request->url != '') {
+                $query = $query->where('url', 'like', '%'.$request->url.'%');
+            }
+            if($request->status != '') {
+                $query = $query->where('status', $request->status);
+            }
+            if($request->type != '') {
+                $query = $query->where('type', $request->type);
+            }
+
+        })
+        ->orderBy('type', 'asc')
+        ->orderByRaw(DB::raw("position = '0', position"))
+        ->orderBy('name', 'asc')
+        ->paginate(PAGINATION);
+        return $data;
     }
 
     /**
@@ -37,7 +67,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $optionMenus = Menu::getListMenu();
+        $optionMenus = Menu::getListMenu(MENUTYPE1);
         $optionMenuType = CommonOption::menuTypeArray();
         return view('admin.menu.create', ['optionMenus' => $optionMenus, 'optionMenuType' => $optionMenuType]);
     }
@@ -93,7 +123,7 @@ class MenuController extends Controller
     public function edit($id)
     {
         $data = Menu::find($id);
-        $optionMenus = Menu::getListMenu($id);
+        $optionMenus = Menu::getListMenu($data->type, $id);
         $optionMenuType = CommonOption::menuTypeArray();
         return view('admin.menu.edit', ['data' => $data, 'optionMenus' => $optionMenus, 'optionMenuType' => $optionMenuType]);
     }
@@ -172,6 +202,22 @@ class MenuController extends Controller
             }
         }
         return 0;
+    }
+
+    public function updateParentIdSelectBox(Request $request)
+    {
+        $id = $request->id;
+        $type = $request->type;
+        $parentId = $request->parentId;
+        if(!$type) {
+            $type = MENUTYPE1;
+        }
+        if($request->id) {
+            $optionMenus = Menu::getListMenu($type, $id);
+        } else {
+            $optionMenus = Menu::getListMenu($type);
+        }
+        return view('admin.menu.parentIdSelectBox', ['optionMenus' => $optionMenus, 'parentId' => $parentId])->render();;
     }
 
 }

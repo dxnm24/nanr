@@ -21,21 +21,21 @@
 					<tr>
 						<th>Tên</th>
 						<th>Email</th>
-						<!-- <th>Quyền hạn</th> -->
-						<!-- <th>Trạng thái</th> -->
+						<th>Quyền hạn</th>
+						<th>Trạng thái</th>
 						<th style="width:240px;">Action</th>
 					</tr>
 					@foreach($data as $key => $value)
 					<tr>
 						<td>{{ $value->name }}</td>
 						<td>{{ $value->email }}</td>
-						<!-- <td>{{-- CommonOption::getRole($value->role_id) --}}</td> -->
-						<!-- <td>{{-- CommonOption::getStatus($value->status) --}}</td> -->
+						<td>{{ CommonOption::getRole($value->role_id) }}</td>
+						<td><a id="status_{{ $value->id }}" onclick="updateStatus({{ $value->id }}, 'status')" style="cursor: pointer;" title="Click to change">{!! CommonOption::getStatus($value->status) !!}</a></td>
 						<td>
-							@if(Auth::guard('admin')->user()->id == $value->id)
+							@if(Auth::guard('admin')->user()->id == 1)
 								<a href="{{ route('admin.account.password', $value->id) }}" class="btn btn-success">Đổi mật khẩu</a>
 								<a href="{{ route('admin.account.edit', $value->id) }}" class="btn btn-primary">Sửa</a>
-								@if(0==1)
+								@if(Auth::guard('admin')->user()->id == 1 && $value->id != Auth::guard('admin')->user()->id)
 								<form method="POST" action="{{ route('admin.account.destroy', $value->id) }}" style="display: inline-block;">
 									{{ method_field('DELETE') }}
 									{{ csrf_field() }}
@@ -52,5 +52,7 @@
 		{{ $data->links() }}
 	</div>
 </div>
+
+@include('admin.auth.script')
 
 @stop

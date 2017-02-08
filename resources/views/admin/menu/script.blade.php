@@ -1,4 +1,31 @@
 <script>
+	function updateParentIdSelectBox()
+	{
+		var type = $('select[name^="type"]').val();
+		var parentId = $('input[name^="parentId"]').val();
+		$.ajax(
+		{
+			type: 'post',
+			url: '{{ url("admin/menu/updateParentIdSelectBox") }}',
+			data: {
+				'type': type,
+				'parentId': parentId,
+				'_token': '{{ csrf_token() }}'
+			},
+			beforeSend: function() {
+	            $('#ParentIdSelectBox').html('Updating...');
+	        },
+			success: function(data)
+			{
+				console.log(data);
+				if(data) {
+					$('#ParentIdSelectBox').html(data);
+				} else {
+					$('#ParentIdSelectBox').html('Error! Please load again~');
+				}
+			}
+		});
+	}
 	function callupdate()
 	{
 		var id = $('input:checkbox.id').map(function () {

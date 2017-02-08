@@ -18,10 +18,10 @@ ScaleSlider();$Jssor$.$AddEvent(window,"load",ScaleSlider);$Jssor$.$AddEvent(win
             $styleDisplayNone = ($key > 0)?' style="display: none;"':'';
           ?>
           <div data-p="112.50" {!! $styleDisplayNone !!}>
-              <img data-u="image" src="{{ $value->image }}" alt="{!! $value->name !!}" />
+              <img data-u="image" src="{{ url($value->image) }}" alt="{!! $value->name !!}" />
               <p class="st"><a href="{{ url($value->url) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></p>
               <div data-u="thumb">
-                  <img class="i" src="{{ $thumbnail }}" alt="{!! $value->name !!}" />
+                  <img class="i" src="{{ url($thumbnail) }}" alt="{!! $value->name !!}" />
                   <div class="t">{!! $value->name !!}</div>
               </div>
           </div>

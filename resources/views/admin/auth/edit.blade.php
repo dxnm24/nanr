@@ -30,12 +30,17 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" style="display: none;">
+					<div class="form-group" style="display: block;">
 						<label for="role_id">Quyền hạn</label>
 						<div class="row">
 							<div class="col-sm-6">
 							{!! Form::select('role_id', CommonOption::roleArray(), $data->role_id, array('class' =>'form-control')) !!}
 							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							@include('admin.common.inputStatusLang', array('isEdit' => true))
 						</div>
 					</div>
 				</div>

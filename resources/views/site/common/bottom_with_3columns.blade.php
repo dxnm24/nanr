@@ -11,7 +11,7 @@
 						$thumbnail = str_replace('/thumb/', '/', $thumbnail);
 					?>
 					<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-						<img src="{{ $thumbnail }}" alt="{!! $value->name !!}" />
+						<img src="{{ url($thumbnail) }}" alt="{!! $value->name !!}" />
 						<span>{!! $value->name !!}</span>
 					</a>
 					@endforeach
@@ -21,7 +21,7 @@
 		</div>
 		<div class="medium-4 columns">
 			<div class="bot">
-				<a href="{{ url('/') }}" class="logo" rel="nofollow"><img src="/img/logo.png" alt="Công Thức Nấu Ăn Ngon Rẻ" /></a>
+				<a href="{{ url('/') }}" class="logo" rel="nofollow"><img src="{{ url('/img/logo.png') }}" alt="Công Thức Nấu Ăn Ngon Rẻ" /></a>
 				@if($configcredit)
 				<p>{!! $configcredit !!}</p>
 				@endif

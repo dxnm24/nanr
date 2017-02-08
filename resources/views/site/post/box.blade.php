@@ -13,7 +13,7 @@
 		<div class="callout post-list clearfix">
 			<div class="post-image">
 				<a href="{{ url($value->slug) }}" title="{!! $value->name !!}">
-					<img src="{{ $thumbnail }}" alt="{!! $value->name !!}" />
+					<img src="{{ url($thumbnail) }}" alt="{!! $value->name !!}" />
 				</a>
 			</div>
 			<div class="post-title">

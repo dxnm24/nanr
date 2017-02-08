@@ -5,7 +5,14 @@
       <div class="swiper-container">
           <div class="swiper-wrapper">
             @foreach($sliders as $key => $value)
-              <div class="swiper-slide"><a href="{{ url($value->url) }}" title="{!! $value->name !!}"><img src="{{ $value->image }}" alt="{!! $value->name !!}" /><h3>{!! $value->name !!}</h3></a></div>
+            <?php 
+              if($value->image != '') {
+                $basename = pathinfo($value->image, PATHINFO_BASENAME);
+                $dirname = pathinfo($value->image, PATHINFO_DIRNAME);
+                $thumbnail = $dirname . '/thumb/' . $basename;
+              }
+            ?>
+              <div class="swiper-slide"><a href="{{ url($value->url) }}" title="{!! $value->name !!}"><img src="{{ url($thumbnail) }}" alt="{!! $value->name !!}" /><h3>{!! $value->name !!}</h3></a></div>
             @endforeach
           </div>
           <div class="swiper-button-prev"></div>

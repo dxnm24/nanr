@@ -9,13 +9,17 @@
             <li><a href="{{ route('admin.posttype.index') }}"><i class="fa fa-list"></i> <span>Thể loại posts</span></a></li>
             <li><a href="{{ route('admin.posttag.index') }}"><i class="fa fa-tags"></i> <span>Tags posts</span></a></li>
             <li><a href="{{ route('admin.page.index') }}"><i class="fa fa-list"></i> <span>Pages</span></a></li>
+            <li><a href="{{ route('admin.slider.index') }}"><i class="fa fa-list"></i> <span>Slider</span></a></li>
+            @if(Auth::guard('admin')->user()->role_id == ADMIN)
             <li><a href="{{ route('admin.ad.index') }}"><i class="fa fa-picture-o"></i> <span>Quảng cáo</span></a></li>
             <li><a href="{{ route('admin.contact.index') }}"><i class="fa fa-list"></i> <span>Liên hệ</span></a></li>
-            <li><a href="{{ route('admin.slider.index') }}"><i class="fa fa-list"></i> <span>Slider</span></a></li>
+            @endif
             <li class="header">CONFIG</li>
             <li><a href="{{ route('admin.menu.index') }}"><i class="fa fa-list"></i> <span>Quản lý menu</span></a></li>
+            @if(Auth::guard('admin')->user()->role_id == ADMIN)
             <li><a href="{{ route('admin.config.edit', 1) }}"><i class="fa fa-list"></i> <span>Cài đặt chung</span></a></li>
             <li><a href="{{ route('admin.account.index') }}"><i class="fa fa-users"></i> <span>Quản lý tài khoản</span></a></li>
+            @endif
         </ul>
     </section>
     <!-- /.sidebar -->

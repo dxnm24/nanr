@@ -72,7 +72,7 @@
 							<div class="column">
 								<div class="callout material-list clearfix">
 									<a href="{{ url($value['slug']) }}" title="{!! $value['name'] !!}">
-										<img src="{{ $value['material_image'] }}" alt="{!! $value['name'] !!}" />
+										<img src="{{ url($value['material_image']) }}" alt="{!! $value['name'] !!}" />
 										<p>{!! $value['material'] !!}</p>
 									</a>
 								</div>

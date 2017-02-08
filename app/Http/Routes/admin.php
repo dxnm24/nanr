@@ -3,10 +3,12 @@ Route::group(['middleware' => ['auth:admin']], function ($router) {
     // Route::get('/', ['uses' => 'AdminController@index', 'as' => 'admin.index']);
     Route::get('/', 'PostController@index');
     //account
+    Route::post('account/updateStatus', 'AccountController@updateStatus');
     Route::get('account/{id}/password', ['uses' => 'AccountController@password', 'as' => 'admin.account.password']);
     Route::post('account/{id}/password', ['uses' => 'AccountController@doPassword', 'as' => 'admin.account.password']);
     Route::resource('account', 'AccountController');
     //menu
+    Route::post('menu/updateParentIdSelectBox', 'MenuController@updateParentIdSelectBox');
     Route::post('menu/updateStatus', 'MenuController@updateStatus');
     Route::post('menu/callupdate', 'MenuController@callupdate');
     Route::resource('menu', 'MenuController');

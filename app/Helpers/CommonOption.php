@@ -55,7 +55,7 @@ class CommonOption
     //role admin
     static function roleArray()
     {
-        return array(ADMIN=>'Admin'); //, EDITOR=>'Editor'
+        return array(ADMIN=>'Admin', EDITOR=>'Editor');
     }
     static function getRole($roleId=ADMIN)
     {
