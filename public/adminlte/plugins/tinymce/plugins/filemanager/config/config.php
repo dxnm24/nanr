@@ -201,7 +201,7 @@ $file_number_limit_js = 500;
 // Hidden files and folders
 //**********************
 // set the names of any folders you want hidden (eg "hidden_folder1", "hidden_folder2" ) Remember all folders with these names will be hidden (you can set any exceptions in config.php files on folders)
-$hidden_folders = array('thumb');
+$hidden_folders = array('thumb', 'thumb2');
 // set the names of any files you want hidden. Remember these names will be hidden in all folders (eg "this_document.pdf", "that_image.jpg" )
 $hidden_files = array('config.php');
 
@@ -224,11 +224,11 @@ $JAVAMaxSizeUpload = 200; //Gb
 // path_from_filemanager/test/test1/
 // PS if there isn't write permission in your destination folder you must set it
 // 
-$fixed_image_creation                   = TRUE; //activate or not the creation of one or more image resized with fixed path from filemanager folder
+$fixed_image_creation                   = FALSE; //activate or not the creation of one or more image resized with fixed path from filemanager folder
 $fixed_path_from_filemanager            = array('thumb/','thumb/'); //fixed path of the image folder from the current position on upload folder
 $fixed_image_creation_name_to_prepend   = array('',''); //name to prepend on filename
 $fixed_image_creation_to_append         = array('',''); //name to appendon filename
-$fixed_image_creation_width             = array(420,); //width of image (you can leave empty if you set height)
+$fixed_image_creation_width             = array(420,''); //width of image (you can leave empty if you set height)
 $fixed_image_creation_height            = array(270,''); //height of image (you can leave empty if you set width)
 /*
 #             $option:     0 / exact = defined size;
@@ -246,11 +246,11 @@ $fixed_image_creation_option            = array('crop','auto'); //set the type o
 // The image creation path is always relative so if i'm inside source/test/test1 and I upload an image, the path start from here
 // 
 $relative_image_creation                = TRUE; //activate or not the creation of one or more image resized with relative path from upload folder
-$relative_path_from_current_pos         = array('thumb/','thumb/'); //relative path of the image folder from the current position on upload folder
+$relative_path_from_current_pos         = array('thumb/','thumb2/'); //relative path of the image folder from the current position on upload folder
 $relative_image_creation_name_to_prepend= array('',''); //name to prepend on filename
 $relative_image_creation_name_to_append = array('',''); //name to append on filename
-$relative_image_creation_width          = array(420,''); //width of image (you can leave empty if you set height)
-$relative_image_creation_height         = array(270,''); //height of image (you can leave empty if you set width)
+$relative_image_creation_width          = array(420,220); //width of image (you can leave empty if you set height)
+$relative_image_creation_height         = array(270,220); //height of image (you can leave empty if you set width)
 /*
 #             $option:     0 / exact = defined size;
 #                          1 / portrait = keep aspect set height;

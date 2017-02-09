@@ -7,7 +7,7 @@
           if($value->image != '') {
             $basename = pathinfo($value->image, PATHINFO_BASENAME);
             $dirname = pathinfo($value->image, PATHINFO_DIRNAME);
-            $thumbnail = $dirname . '/thumb/' . $basename;
+            $thumbnail = $dirname . '/thumb2/' . $basename;
           }
         ?>
 		<a href="{{ url($value->url) }}" title="{!! $value->name !!}">
