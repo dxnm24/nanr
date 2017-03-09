@@ -117,7 +117,7 @@ $image_resizing_override 	= FALSE;
 // YOU CAN ALSO PASS THIS PARAMETERS USING SESSION VAR => $_SESSION['RF']["VIEW"]=
 //
 //******************
-$default_view = 0;
+$default_view = 2;
 
 //set if the filename is truncated when overflow first row 
 $ellipsis_title_after_first_row = TRUE;
