@@ -110,7 +110,7 @@ function getImageDimensionsOg($image='')
         if($checkFile === false) {
             return;
         }
-        list($width, $height) = getimagesize($imageUrl);
+        list($width, $height) = @getimagesize($imageUrl);
         $string = '<meta property="og:image:width" content="'.$width.'" /><meta property="og:image:height" content="'.$height.'" />';
         return $string;
     }

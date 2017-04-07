@@ -7,10 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-language" content="vi">
 	<meta name="format-detection" content="telephone=no">
-	<meta name="revisit-after" content="1 days" />
-	<meta name="robots" content="noindex,nofollow" />
+	<meta name="robots" content="index,follow" />
 	<meta name="language" content="vietnamese" />
-	<meta name='revisit-after' content='1 days' />
 	<meta name="title" content="{!! $meta_title !!}">
 	<meta name="keywords" content="{!! $meta_keyword !!}">
 	<meta name="description" content="{!! $meta_description !!}">
@@ -20,7 +18,7 @@
 	@if($meta_image)
 	<meta property="og:image" content="{!! url($meta_image) !!}" />
 	@endif
-	{!! getImageDimensionsOg($meta_image) !!}
+	{{-- getImageDimensionsOg($meta_image) --}}
 	@if(isset($isPost))
 	<meta property="og:type" content="article" />
 	@endif
