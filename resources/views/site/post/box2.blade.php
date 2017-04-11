@@ -4,7 +4,7 @@
 <div class="post-large">
 	<a href="{{ url($data[0]->slug) }}" title="{!! $data[0]->name !!}">
 		<img src="{{ url($data[0]->image) }}" alt="{!! $data[0]->name !!}" />
-		<h2>{!! $data[0]->name !!}</h2>
+		<h3>{!! $data[0]->name !!}</h3>
 	</a>
 	<p>{!! limit_text($data[0]->summary, 200) !!}</p>
 </div>
@@ -21,7 +21,7 @@
 		</a>
 	</div>
 	<div class="post-title">
-		<h2><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
+		<h3><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h3>
 	</div>
 </div>
 @endif

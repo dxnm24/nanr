@@ -246,7 +246,7 @@ ul.box-tabs {
 }
 .box-title {
     padding: 0.625rem 0 0;
-	> h1, > h3, > strong {
+	> h1, > h2, > h3, > strong {
 		font-size: 1rem;
 	    color: #fff;
 	    display: inline-block;
@@ -1164,7 +1164,8 @@ h3.middle-title {
 				margin-right: 0.313rem;
 			}
 		}
-		> h2 {
+		> h2,
+		> h3 {
 			margin: 0;
 			padding: 0;
 			font-size: 0.938rem;
@@ -1180,7 +1181,8 @@ h3.middle-title {
 }
 
 .post-large {
-	> h2 {
+	> h2,
+	> h3 {
 		> a {
 			display: block;
 			font-weight: 700;
@@ -1243,6 +1245,7 @@ h3.middle-title {
 
 .box0, .posttypes {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #058b7b;
 		}
@@ -1257,6 +1260,7 @@ h3.middle-title {
 
 .box1 {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #0db1ff;
 		}
@@ -1274,6 +1278,7 @@ h3.middle-title {
 
 .box2 {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #ffb618;
 		}
@@ -1291,6 +1296,7 @@ h3.middle-title {
 
 .box3 {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #00c360;
 		}
@@ -1305,6 +1311,7 @@ h3.middle-title {
 
 .box4 {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #ff3a3a;
 		}
@@ -1319,6 +1326,7 @@ h3.middle-title {
 
 .box5 {
 	> .box-title {
+		> h2,
 		> h3 {
 			background-color: #9349b1;
 		}
@@ -1335,7 +1343,8 @@ h3.middle-title {
 }
 
 .display-title {
-	h3 {
+	> h2,
+	> h3 {
 		padding: 0;
 		> a {
 			> span.display-title-link {

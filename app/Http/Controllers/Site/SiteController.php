@@ -132,16 +132,20 @@ class SiteController extends Controller
             $data = $this->getPostByRelationsQuery('tag', $tag->id)->paginate(PAGINATE);
             if($data->total() > 0) {
                 //auto meta tag for seo
+                $tagName = ucwords(mb_strtolower($tag->name));
                 if(empty($tag->meta_title)) {
-                    $tag->meta_title = $tag->name.' | Tổng hợp công thức nấu ăn ngon tại nauanngonre.com';
+                    if($page > 1) {
+                        $tag->meta_title = $tagName.' trang '.$page.' | Nauanngonre.com';
+                    } else {
+                        $tag->meta_title = $tagName.' | Nauanngonre.com';
+                    }
                 }
                 if(empty($tag->meta_keyword)) {
-                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tag->name);
-                    $tag->meta_keyword = $tagNameNoLatin.', '.$tag->name;
+                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tagName);
+                    $tag->meta_keyword = $tagNameNoLatin.','.$tagName;
                 }
                 if(empty($tag->meta_description)) {
-                    $tagNameNoLatin = CommonMethod::convert_string_vi_to_en($tag->name);
-                    $tag->meta_description = $tagNameNoLatin.', '.$tag->name.' tại nauanngonre.com';
+                    $tag->meta_description = $tagName;
                 }
                 //put cache
                 $html = view('site.post.tag', ['data' => $data, 'tag' => $tag])->render();
@@ -193,49 +197,25 @@ class SiteController extends Controller
             } else {
                 $paginateNumber = PAGINATE_GRID;
             }
-/****
-            // check parent_id
-            $types = $this->getPostTypeByParentIdQuery($type->id)->get();
-            $countTypes = count($types);
-            if($countTypes > 0) {
-                $paginate = null;
-                //1. hien thi toan bo type duoc danh dau la con cua type (seri) nao do (luon mo code duoi)
-                $data = collect($types);
-                //2. hien thi them post duoc danh dau the loai la type (seri). Co nghia la hien thi type (theo muc so 1. va ca post duoc danh dau type (seri)). Neu chi hien thi type trong trang seri thi dong 2 dong code duoi day va nguoc lai mo ra de hien thi ca type va post thuoc seri do.
-                $posttypes = $this->getPostByRelationsQuery('type', $type->id)->get();
-                $data = collect($types)->merge($posttypes);
-                //add field seri to check seri ribbon image (doan code duoi day cho phep check item trong trang seri la type hay post de su dung 1 image ribbon)
-                //2.1 check item (mo doan code nay khi su dung muc so 2. o tren va dong vao khi khong su dung muc so 2. o tren)
-                $typesIds = $this->getPostTypeByParentIdQuery($type->id)->pluck('id');
-                foreach($data as $v) {
-                    if(in_array($v->id, $typesIds)) {
-                        $v->seri = ACTIVE;
-                    } else {
-                        $v->seri = INACTIVE;
-                    }
-                }
-                //1.1 check box (mo ra neu khong su dung muc so 2. va dong vao khi su dung muc so 2. o tren)
-                // $data->seri = ACTIVE;
-            } else {
-                $paginate = 1;
-                $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
-            }
-****/
             $paginate = 1;
             $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
             $total = count($data);
             if($total > 0) {
                 //auto meta tag for seo
+                $typeName = ucwords(mb_strtolower($type->name));
                 if(empty($type->meta_title)) {
-                    $type->meta_title = $type->name.' | Tổng hợp công thức nấu ăn ngon tại nauanngonre.com';
+                    if($page > 1) {
+                        $type->meta_title = $typeName.' trang '.$page.' | Nauanngonre.com';
+                    } else {
+                        $type->meta_title = $typeName.' | Nauanngonre.com';
+                    }
                 }
                 if(empty($type->meta_keyword)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
+                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($typeName);
+                    $type->meta_keyword = $typeNameNoLatin.','.$typeName;
                 }
                 if(empty($type->meta_description)) {
-                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                    $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại nauanngonre.com';
+                    $type->meta_description = $typeName;
                 }
                 //put cache
                 $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate])->render();
@@ -244,57 +224,6 @@ class SiteController extends Controller
                 return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate]);
             }
         }
-/****
-        // IF SLUG EXIST -moi-nhat or -hay-nhat
-        // post type with sortby
-        $latestSlug = strpos($slug, '-moi-nhat');
-        $hotestSlug = strpos($slug, '-hay-nhat');
-        if($latestSlug !== false || $hotestSlug !== false) {
-            $isHotOrNew = null;
-            $typeSlug = substr($slug, 0, -17);
-            $type = $this->getPostTypeBySlug($typeSlug);
-            if(isset($type)) {
-                if($type->grid == ACTIVE) {
-                    $paginateNumber = PAGINATE;
-                } else {
-                    $paginateNumber = PAGINATE_GRID;
-                }
-                if($latestSlug !== false) {
-                    $data = $this->getPostByRelationsQuery('type', $type->id)->paginate($paginateNumber);
-                    $type->name = $type->name.' mới nhất';
-                    $type->slug = $type->slug.'-moi-nhat';
-                    $isHotOrNew = 1;
-                }
-                if($hotestSlug !== false) {
-                    $data = $this->getPostByRelationsQuery('type', $type->id, 'view', 'desc')->paginate($paginateNumber);
-                    $type->name = $type->name.' hay nhất';
-                    $type->slug = $type->slug.'-hay-nhat';
-                    $isHotOrNew = 1;
-                }
-                $paginate = 1;
-                $total = count($data);
-                if($total > 0) {
-                    //auto meta tag for seo
-                    if(empty($type->meta_title)) {
-                        $type->meta_title = $type->name.' | Tổng hợp công thức nấu ăn cũ và mới kinh điển tại nauanngonre.com';
-                    }
-                    if(empty($type->meta_keyword)) {
-                        $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                        $type->meta_keyword = $typeNameNoLatin.', '.$type->name;
-                    }
-                    if(empty($type->meta_description)) {
-                        $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($type->name);
-                        $type->meta_description = $typeNameNoLatin.', '.$type->name.' tại nauanngonre.com';
-                    }
-                    //put cache
-                    $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'isHotOrNew' => $isHotOrNew])->render();
-                    Cache::forever($cacheName, $html);
-                    //return view
-                    return view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'isHotOrNew' => $isHotOrNew]);
-                }
-            }
-        }
-****/
         // IF SLUG IS A POST
         // post
         $post = DB::table('posts')
@@ -358,16 +287,16 @@ class SiteController extends Controller
                 $postMaterial = null;
             }
             //auto meta tag for seo
+            $postName = ucwords(mb_strtolower($post->name));
             if(empty($post->meta_title)) {
-                $post->meta_title = $post->name.' | '.$post->name.' tại nauanngonre.com';
+                $post->meta_title = $postName.' | Nauanngonre.com';
             }
             if(empty($post->meta_keyword)) {
-                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($post->name);
-                $post->meta_keyword = $post->name.', '.$postNameNoLatin;
+                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($postName);
+                $post->meta_keyword = $postName.','.$postNameNoLatin;
             }
             if(empty($post->meta_description)) {
-                $postNameNoLatin = CommonMethod::convert_string_vi_to_en($post->name);
-                $post->meta_description = $post->name.', '.$postNameNoLatin;
+                $post->meta_description = limit_text(strip_tags($post->summary), 200);
             }
             //put cache
             $html = view('site.post.show', [
@@ -425,6 +354,22 @@ class SiteController extends Controller
             $total = count($data);
             if($total > 0) {
                 $seriParent = $this->getPostTypeById($type->parent_id);
+                //auto meta tag for seo
+                $typeName = ucwords(mb_strtolower($type->name));
+                if(empty($type->meta_title)) {
+                    if($page > 1) {
+                        $type->meta_title = $typeName.' trang '.$page.' | Nauanngonre.com';
+                    } else {
+                        $type->meta_title = $typeName.' | Nauanngonre.com';
+                    }
+                }
+                if(empty($type->meta_keyword)) {
+                    $typeNameNoLatin = CommonMethod::convert_string_vi_to_en($typeName);
+                    $type->meta_keyword = $typeNameNoLatin.','.$typeName;
+                }
+                if(empty($type->meta_description)) {
+                    $type->meta_description = $typeName;
+                }
                 //put cache
                 $html = view('site.post.type', ['data' => $data, 'type' => $type, 'total' => $total, 'paginate' => $paginate, 'seriParent' => $seriParent])->render();
                 Cache::forever($cacheName, $html);
@@ -436,9 +381,10 @@ class SiteController extends Controller
     }
     public function search(Request $request)
     {
+        $search = array();
         trimRequest($request);
         if($request->name == '') {
-            return view('site.post.search', ['data' => null, 'request' => $request]);
+            return view('site.post.search', ['data' => null, 'request' => $request, 'search' => $search]);
         }
         //check page
         $page = ($request->page)?$request->page:1;
@@ -455,18 +401,26 @@ class SiteController extends Controller
         //query
         // post
         $slug = CommonMethod::convert_string_vi_to_en($request->name);
-        $slug = strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
+        $slug = mb_strtolower(preg_replace('/[^a-zA-Z0-9]+/i', '-', $slug));
         $data = DB::table('posts')
             ->where('status', ACTIVE)
             ->where('start_date', '<=', date('Y-m-d H:i:s'))
             ->where('slug', 'like', '%'.$slug.'%')
             ->orderBy('start_date', 'desc')
             ->paginate(PAGINATE);
+        //auto meta tag for seo
+        if($page > 1) {
+            $search['meta_title'] = 'Tìm kiếm: '.$request->name.' trang '.$page.' | Nauanngonre.com';
+        } else {
+            $search['meta_title'] = 'Tìm kiếm: '.$request->name.' | Nauanngonre.com';
+        }
+        $search['meta_keyword'] = $request->name;
+        $search['meta_description'] = $request->name;
         //put cache
-        $html = view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request])->render();
+        $html = view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request, 'search' => $search])->render();
         Cache::forever($cacheName, $html);
         //return view
-        return view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request]);
+        return view('site.post.search', ['data' => $data->appends($request->except('page')), 'request' => $request, 'search' => $search]);
     }
     public function sitemap()
     {

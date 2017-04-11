@@ -46,7 +46,7 @@
 			@if($value->display == 0)
 			<div class="box box0">
 				<div class="row column box-title box-title-hr display-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+					<h2><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box', array('type' => $value))
@@ -58,7 +58,7 @@
 			@if($value->display == 1)
 			<div class="box box1">
 				<div class="row column box-title box-title-hr display-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+					<h2><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box1', array('type' => $value))
@@ -72,7 +72,7 @@
 				<div class="row">
 					<div class="medium-6 columns box2">
 						<div class="box-title box-title-hr display-title">
-							<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+							<h2><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 						</div>
 						<div class="box-inner">
 						@include('site.post.box2', array('type' => $value))
@@ -88,7 +88,7 @@
 							}
 						?>
 						<div class="box-title box-title-hr display-title">
-							<h3><a href="{{ $url2 }}" title="{!! $value->typeRelation->name !!}"><span class="display-title-link">{!! $value->typeRelation->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+							<h2><a href="{{ $url2 }}" title="{!! $value->typeRelation->name !!}"><span class="display-title-link">{!! $value->typeRelation->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 						</div>
 						<div class="box-inner">
 						@include('site.post.box3', array('type' => $value->typeRelation))
@@ -103,7 +103,7 @@
 			@if($value->display == 4)
 			<div class="box box4">
 				<div class="row column box-title box-title-hr display-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+					<h2><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box4', array('type' => $value))
@@ -115,7 +115,7 @@
 			@if($value->display == 5)
 			<div class="box box5">
 				<div class="row column box-title box-title-hr display-title">
-					<h3><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h3>
+					<h2><a href="{{ $url }}" title="{!! $value->name !!}"><span class="display-title-link">{!! $value->name !!}</span><span class="display-title-rss"><i class="fa fa-rss" aria-hidden="true"></i></span></a></h2>
 				</div>
 				<div class="box-inner">
 				@include('site.post.box5', array('type' => $value))

@@ -15,7 +15,7 @@
 	<meta property="og:url" content="{!! url()->current() !!}" />
 	<meta property="og:title" content="{!! $meta_title !!}" />
 	<meta property="og:description" content="{!! $meta_description !!}" />
-	@if($meta_image)
+	@if(!empty($meta_image))
 	<meta property="og:image" content="{!! url($meta_image) !!}" />
 	@endif
 	{{-- getImageDimensionsOg($meta_image) --}}

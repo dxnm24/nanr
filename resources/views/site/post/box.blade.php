@@ -17,7 +17,7 @@
 				</a>
 			</div>
 			<div class="post-title">
-				<h2><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h2>
+				<h3><a href="{{ url($value->slug) }}" title="{!! $value->name !!}">{!! $value->name !!}</a></h3>
 			</div>
 		</div>
 	</div>
