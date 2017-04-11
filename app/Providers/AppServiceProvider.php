@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use DB;
+use Cache;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,37 +16,75 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //slider
-        $sliders = DB::table('sliders')
-            ->select('id', 'name', 'url', 'image')
-            ->where('status', ACTIVE)
-            ->where('type', SLIDER2)
-            ->limit(PAGINATE_SLIDER)
-            ->orderByRaw(DB::raw("position = '0', position"))
-            ->orderBy('id', 'desc')
-            ->get();
-        view()->share('sliders', $sliders);
+        if(Cache::has('viewsliders')) {
+            $viewsliders = Cache::get('viewsliders');
+        } else {
+            $viewsliders = DB::table('sliders')
+                ->select('id', 'name', 'url', 'image')
+                ->where('status', ACTIVE)
+                ->where('type', SLIDER2)
+                ->limit(PAGINATE_SLIDER)
+                ->orderByRaw(DB::raw("position = '0', position"))
+                ->orderBy('id', 'desc')
+                ->get();
+            Cache::forever('viewsliders', $viewsliders);
+        }
+        view()->share('sliders', $viewsliders);
         //middle
-        $middle = DB::table('sliders')
-            ->select('id', 'name', 'url', 'image')
-            ->where('status', ACTIVE)
-            ->where('type', SLIDER3)
-            ->limit(PAGINATE_MIDDLE)
-            ->orderByRaw(DB::raw("position = '0', position"))
-            ->orderBy('id', 'desc')
-            ->get();
-        view()->share('middlearchives', $middle);
+        if(Cache::has('viewmiddlearchives')) {
+            $viewmiddlearchives = Cache::get('viewmiddlearchives');
+        } else {
+            $viewmiddlearchives = DB::table('sliders')
+                ->select('id', 'name', 'url', 'image')
+                ->where('status', ACTIVE)
+                ->where('type', SLIDER3)
+                ->limit(PAGINATE_MIDDLE)
+                ->orderByRaw(DB::raw("position = '0', position"))
+                ->orderBy('id', 'desc')
+                ->get();
+            Cache::forever('viewmiddlearchives', $viewmiddlearchives);
+        }
+        view()->share('middlearchives', $viewmiddlearchives);
         //post data
-        view()->share('latesarchives', self::getArchives());
-        view()->share('populararchives', self::getArchives('view','desc'));
+        if(Cache::has('viewlatesarchives')) {
+            $viewlatesarchives = Cache::get('viewlatesarchives');
+        } else {
+            $viewlatesarchives = self::getArchives();
+            Cache::forever('viewlatesarchives', $viewlatesarchives);
+        }
+        view()->share('latesarchives', $viewlatesarchives);
+        if(Cache::has('viewpopulararchives')) {
+            $viewpopulararchives = Cache::get('viewpopulararchives');
+        } else {
+            $viewpopulararchives = self::getArchives('view','desc');
+            Cache::forever('viewpopulararchives', $viewpopulararchives);
+        }
+        view()->share('populararchives', $viewpopulararchives);
         //get config data
-        $config = DB::table('configs')->first();
+        if(Cache::has('configsite')) {
+            $config = Cache::get('configsite');
+        } else {
+            $config = DB::table('configs')->first();
+            Cache::forever('configsite', $config);
+        }
         view()->share('configcode', $config->code);
         view()->share('configfbappid', $config->facebook_app_id);
         view()->share('configcredit', $config->credit);
         //all menu
-        view()->share('topmenu', self::getMenu());
-        // self::getMenus(MENUTYPE1, 'topmenu');
-        view()->share('sidemenu', self::getMenu(MENUTYPE2));
+        if(Cache::has('menutype1')) {
+            $menutype1 = Cache::get('menutype1');
+        } else {
+            $menutype1 = self::getMenu();
+            Cache::forever('menutype1', $menutype1);
+        }
+        view()->share('topmenu', $menutype1);
+        if(Cache::has('menutype2')) {
+            $menutype2 = Cache::get('menutype2');
+        } else {
+            $menutype2 = self::getMenu(MENUTYPE2);
+            Cache::forever('menutype2', $menutype2);
+        }
+        view()->share('sidemenu', $menutype2);
         // self::getMenus(MENUTYPE2, 'sidemenu');
         // self::getMenus(MENUTYPE3, 'bottommenu');
         self::getMenus(MENUTYPE4, 'mobilemenu');
@@ -65,12 +104,18 @@ class AppServiceProvider extends ServiceProvider
 
     private function getMenus($type, $name)
     {
-        $menu = DB::table('menus')
-            ->where('type', $type)
-            ->where('status', ACTIVE)
-            ->orderByRaw(DB::raw("position = '0', position"))
-            ->orderBy('name')
-            ->get();
+        $cacheName = 'menu_'.$type.'_'.$name;
+        if(Cache::has($cacheName)) {
+            $menu = Cache::get($cacheName);
+        } else {
+            $menu = DB::table('menus')
+                ->where('type', $type)
+                ->where('status', ACTIVE)
+                ->orderByRaw(DB::raw("position = '0', position"))
+                ->orderBy('name')
+                ->get();
+            Cache::forever($cacheName, $menu);
+        }
         view()->share($name, $menu);
     }
 
