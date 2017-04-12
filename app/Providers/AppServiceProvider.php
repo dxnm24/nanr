@@ -71,18 +71,20 @@ class AppServiceProvider extends ServiceProvider
         view()->share('configfbappid', $config->facebook_app_id);
         view()->share('configcredit', $config->credit);
         //all menu
-        if(Cache::has('menutype1')) {
-            $menutype1 = Cache::get('menutype1');
+        //current url
+        $currentUrl = url()->current();
+        if(Cache::has('menutype1'.$currentUrl)) {
+            $menutype1 = Cache::get('menutype1'.$currentUrl);
         } else {
             $menutype1 = self::getMenu();
-            Cache::forever('menutype1', $menutype1);
+            Cache::forever('menutype1'.$currentUrl, $menutype1);
         }
         view()->share('topmenu', $menutype1);
-        if(Cache::has('menutype2')) {
-            $menutype2 = Cache::get('menutype2');
+        if(Cache::has('menutype2'.$currentUrl)) {
+            $menutype2 = Cache::get('menutype2'.$currentUrl);
         } else {
             $menutype2 = self::getMenu(MENUTYPE2);
-            Cache::forever('menutype2', $menutype2);
+            Cache::forever('menutype2'.$currentUrl, $menutype2);
         }
         view()->share('sidemenu', $menutype2);
         // self::getMenus(MENUTYPE2, 'sidemenu');
