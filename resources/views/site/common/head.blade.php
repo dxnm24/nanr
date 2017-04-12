@@ -26,7 +26,7 @@
 	<meta property="fb:app_id" content="{!! $configfbappid !!}" />
 	@endif
 	<link rel="shortcut icon" href="{!! url('img/favicon.png') !!}" type="image/x-icon">
-	<link rel="alternate" hreflang="vi" href="{!! env('APP_URL', 'http://nauanngonre.com') !!}" />
+	<link rel="alternate" hreflang="vi" href="{!! env('APP_URL', 'https://nauanngonre.com') !!}" />
 	@if(isset($pagePrev))
 	<link rel="prev" href="{!! $pagePrev !!}">
 	@endif
