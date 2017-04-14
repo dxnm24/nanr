@@ -7,7 +7,7 @@
     FB.init({
       appId      : '{{ $configfbappid }}',
       xfbml      : true,
-      version    : 'v2.7'
+      version    : 'v2.8'
     });
   };
 
