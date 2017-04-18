@@ -106,7 +106,7 @@
 									<div class="col-sm-12">
 										<div class="row">
 											<div class="col-sm-7">
-												<input name="material_image" type="text" value="{{ old('material_image') }}" class="form-control" readonly id="url_abs3" onchange="GetFilenameFromPath2('url_abs3');">
+												<input name="material_image" type="text" value="{{ old('material_image') }}" class="form-control" readonly id="url_abs3" onchange="GetFilenameFromPath2('url_abs3', 2);">
 											</div>
 											<div class="col-sm-5">
 									            <a href="/adminlte/plugins/tinymce/plugins/filemanager/dialog.php?type=1&field_id=url_abs3&akey={{ AKEY }}" class="iframe-btn" type="button"><input class="btn btn-primary" type="button" value="Chọn hình..." /></a>

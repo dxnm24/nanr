@@ -132,7 +132,7 @@ class SiteController extends Controller
             $data = $this->getPostByRelationsQuery('tag', $tag->id)->paginate(PAGINATE);
             if($data->total() > 0) {
                 //auto meta tag for seo
-                $tagName = ucwords(mb_strtolower($tag->name));
+                $tagName = mb_convert_case($tag->name, MB_CASE_TITLE, "UTF-8");
                 if(empty($tag->meta_title)) {
                     if($page > 1) {
                         $tag->meta_title = $tagName.' trang '.$page.' | Nauanngonre.com';
@@ -202,7 +202,7 @@ class SiteController extends Controller
             $total = count($data);
             if($total > 0) {
                 //auto meta tag for seo
-                $typeName = ucwords(mb_strtolower($type->name));
+                $typeName = mb_convert_case($type->name, MB_CASE_TITLE, "UTF-8");
                 if(empty($type->meta_title)) {
                     if($page > 1) {
                         $type->meta_title = $typeName.' trang '.$page.' | Nauanngonre.com';
@@ -287,7 +287,7 @@ class SiteController extends Controller
                 $postMaterial = null;
             }
             //auto meta tag for seo
-            $postName = ucwords(mb_strtolower($post->name));
+            $postName = mb_convert_case($post->name, MB_CASE_TITLE, "UTF-8");
             if(empty($post->meta_title)) {
                 $post->meta_title = $postName.' | Nauanngonre.com';
             }
@@ -355,7 +355,7 @@ class SiteController extends Controller
             if($total > 0) {
                 $seriParent = $this->getPostTypeById($type->parent_id);
                 //auto meta tag for seo
-                $typeName = ucwords(mb_strtolower($type->name));
+                $typeName = mb_convert_case($type->name, MB_CASE_TITLE, "UTF-8");
                 if(empty($type->meta_title)) {
                     if($page > 1) {
                         $type->meta_title = $typeName.' trang '.$page.' | Nauanngonre.com';

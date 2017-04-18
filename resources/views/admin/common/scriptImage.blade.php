@@ -82,14 +82,21 @@
 	    var last_url = filePath.substring(filePath.lastIndexOf("/")+1);
 	    $('#url_abs').val(first_url + 'thumb/' + last_url);
 	}
-	function GetFilenameFromPath2(id, thumb='')
+	function GetFilenameFromPath2(id, thumb = '')
 	{
 	    var filePath = $('#'+id).val();
 	    var first_url = filePath.substring(0,filePath.lastIndexOf("/")+1);
 	    var last_url = filePath.substring(filePath.lastIndexOf("/")+1);
-	    if(thumb=='') {
+	    // lay anh goc
+	    if(thumb == '') {
 	    	$('#'+id).val(first_url + last_url);
-	    } else {
+	    }
+	    // lay anh thumb2
+	    else if(thumb == 2) {
+	    	$('#'+id).val(first_url + 'thumb2/' + last_url);
+	    }
+	    // lay anh thumb
+	    else {
 	    	$('#'+id).val(first_url + 'thumb/' + last_url);
 	    }
 	}

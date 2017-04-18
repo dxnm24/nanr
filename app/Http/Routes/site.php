@@ -1,5 +1,11 @@
 <?php
 
+// api for app
+Route::get('/api/getlistpost', 'ApiController@getlistpost');
+Route::get('/api/getpost/{id}', 'ApiController@getpost');
+Route::get('/api/getposttype', 'ApiController@getposttype');
+// end api for app
+
 // Route::resource('test', 'TestController');
 
 Route::post('/contact', 'SiteController@contact');
