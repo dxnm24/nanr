@@ -88,7 +88,7 @@ class ApiController extends Controller
                 }
             }
             if(count($postMaterial) > 0) {
-                $postMaterialHtml = '<div class="row wrap gutter justify-center material">';
+                $postMaterialHtml = '<p><strong class="block">Thành Phần Nguyên Liệu</strong></p><div class="row wrap gutter justify-center material">';
                 foreach($postMaterial as $value) {
                     $postMaterialHtml .= '
                         <div class="width-1of3"><a href="/#/post/'.$value['id'].'">
@@ -103,7 +103,11 @@ class ApiController extends Controller
         }
         //get type by id
         $type = DB::table('post_types')->select('id', 'name')->where('id', $post->type_main_id)->first();
-        $data = ['type' => $type, 'post' => $post];
+        //get link for bai truoc, bai sau
+        $prevPost = DB::table('posts')->select('id')->where('id', '<', $post->id)->orderBy('id', 'desc')->take(1)->first();
+        $nextPost = DB::table('posts')->select('id')->where('id', '>', $post->id)->orderBy('id', 'asc')->take(1)->first();
+        //get data array
+        $data = ['type' => $type, 'post' => $post, 'prevPost' => $prevPost, 'nextPost' => $nextPost];
         //put cache
         Cache::forever($cacheName, $data);
         return response()->json($data);
