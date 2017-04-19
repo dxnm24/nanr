@@ -23,7 +23,11 @@ class ApiController extends Controller
         if(isset($request->type)) {
             $cacheName .= $request->type.'_';
             //get type by id
-            $type = DB::table('post_types')->select('id', 'name')->where('id', $request->type)->first();
+            $type = DB::table('post_types')
+                ->select('id', 'name')
+                ->where('id', $request->type)
+                ->where('status', ACTIVE)
+                ->first();
         }
         if(isset($request->kind) && $request->kind == 1) {
             $cacheName .= 'popular_'.$page;
@@ -73,39 +77,66 @@ class ApiController extends Controller
             ->where('status', ACTIVE)
             ->where('start_date', '<=', date('Y-m-d H:i:s'))
             ->first();
-        $post->name = mb_convert_case($post->name, MB_CASE_TITLE, "UTF-8");
-        // material
-        if(!empty($post->post_material)) {
-            $postMaterialData = explode(',', $post->post_material);
-            $postMaterial = null;
-            foreach($postMaterialData as $key => $value) {
-                $materialData = DB::table('posts')->select('id', 'name', 'material', 'material_image')->where('id', $value)->where('status', ACTIVE)->first();
-                if(count($materialData) > 0) {
-                    $postMaterial[$key]['id'] = $materialData->id;
-                    $postMaterial[$key]['name'] = $materialData->name;
-                    $postMaterial[$key]['material'] = $materialData->material;
-                    $postMaterial[$key]['material_image'] = $materialData->material_image;
+        if(count($post) > 0) {
+            $post->name = mb_convert_case($post->name, MB_CASE_TITLE, "UTF-8");
+            // material
+            if(!empty($post->post_material)) {
+                $postMaterialData = explode(',', $post->post_material);
+                $postMaterial = null;
+                foreach($postMaterialData as $key => $value) {
+                    $materialData = DB::table('posts')
+                        ->select('id', 'name', 'material', 'material_image')
+                        ->where('id', $value)
+                        ->where('status', ACTIVE)
+                        ->where('start_date', '<=', date('Y-m-d H:i:s'))
+                        ->first();
+                    if(count($materialData) > 0) {
+                        $postMaterial[$key]['id'] = $materialData->id;
+                        $postMaterial[$key]['name'] = $materialData->name;
+                        $postMaterial[$key]['material'] = $materialData->material;
+                        $postMaterial[$key]['material_image'] = $materialData->material_image;
+                    }
+                }
+                if(count($postMaterial) > 0) {
+                    $postMaterialHtml = '<p><strong class="block">Thành Phần Nguyên Liệu</strong></p><div class="row wrap gutter justify-center material">';
+                    foreach($postMaterial as $value) {
+                        $postMaterialHtml .= '
+                            <div class="width-1of3"><a href="/#/post/'.$value['id'].'">
+                                <img src="'.url($value['material_image']).'" alt="'.$value['name'].'" class="round-borders shadow-2" >
+                                <p>'.$value['material'].'</p>
+                            </a></div>
+                        ';
+                    }
+                    $postMaterialHtml .= '</div>';
+                    $post->description = $postMaterialHtml . $post->description;
                 }
             }
-            if(count($postMaterial) > 0) {
-                $postMaterialHtml = '<p><strong class="block">Thành Phần Nguyên Liệu</strong></p><div class="row wrap gutter justify-center material">';
-                foreach($postMaterial as $value) {
-                    $postMaterialHtml .= '
-                        <div class="width-1of3"><a href="/#/post/'.$value['id'].'">
-                            <img src="'.url($value['material_image']).'" alt="'.$value['name'].'" class="round-borders shadow-2" >
-                            <p>'.$value['material'].'</p>
-                        </a></div>
-                    ';
-                }
-                $postMaterialHtml .= '</div>';
-                $post->description = $postMaterialHtml . $post->description;
-            }
+            //get type by id
+            $type = DB::table('post_types')
+                ->select('id', 'name')
+                ->where('id', $post->type_main_id)
+                ->where('status', ACTIVE)
+                ->first();
+            //get link for bai truoc, bai sau
+            $prevPost = DB::table('posts')
+                ->select('id')
+                ->where('id', '<', $post->id)
+                ->where('status', ACTIVE)
+                ->where('start_date', '<=', date('Y-m-d H:i:s'))
+                ->orderBy('id', 'desc')
+                ->take(1)->first();
+            $nextPost = DB::table('posts')
+                ->select('id')
+                ->where('id', '>', $post->id)
+                ->where('status', ACTIVE)
+                ->where('start_date', '<=', date('Y-m-d H:i:s'))
+                ->orderBy('id', 'asc')
+                ->take(1)->first();
+        } else {
+            $type = null;
+            $prevPost = null;
+            $nextPost = null;
         }
-        //get type by id
-        $type = DB::table('post_types')->select('id', 'name')->where('id', $post->type_main_id)->first();
-        //get link for bai truoc, bai sau
-        $prevPost = DB::table('posts')->select('id')->where('id', '<', $post->id)->orderBy('id', 'desc')->take(1)->first();
-        $nextPost = DB::table('posts')->select('id')->where('id', '>', $post->id)->orderBy('id', 'asc')->take(1)->first();
         //get data array
         $data = ['type' => $type, 'post' => $post, 'prevPost' => $prevPost, 'nextPost' => $nextPost];
         //put cache
