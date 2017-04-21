@@ -78,6 +78,9 @@ class ApiController extends Controller
             ->where('start_date', '<=', date('Y-m-d H:i:s'))
             ->first();
         if(count($post) > 0) {
+            // convert image
+            // $post->image = self::imageBase64Encode(url($post->image));
+            // convert name
             $post->name = mb_convert_case($post->name, MB_CASE_TITLE, "UTF-8");
             // material
             if(!empty($post->post_material)) {
@@ -111,6 +114,8 @@ class ApiController extends Controller
                     $post->description = $postMaterialHtml . $post->description;
                 }
             }
+            // get all img src to change 
+            // $srcImg = self::getSrcImg($post->description);
             //get type by id
             $type = DB::table('post_types')
                 ->select('id', 'name')
@@ -160,6 +165,47 @@ class ApiController extends Controller
         //put cache
         Cache::forever($cacheName, $data);
         return response()->json($data);
+    }
+
+    private function convertAllSrcImgToBase64Encode($srcImg = array())
+    {
+        $srcImgBase64 = array();
+        if(!empty($srcImg)) {
+            foreach($srcImg as $value) {
+                $srcImgBase64[] = self::imageBase64Encode($value);
+            }
+        }
+        return $srcImgBase64;
+    }
+
+    private function imageBase64Encode($url = '')
+    {
+        $type = pathinfo($url, PATHINFO_EXTENSION);
+        // $data = file_get_contents($url);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
+    }
+
+    private function getSrcImg($htmlContent = '')
+    {
+        // read all image tags into an array
+        preg_match_all('/<img[^>]+>/i',$htmlContent, $imgTags); 
+        for ($i = 0; $i < count($imgTags[0]); $i++) {
+          // get the source string
+          preg_match('/src="([^"]+)/i',$imgTags[0][$i], $imgage);
+          // remove opening 'src=' tag, can`t get the regex right
+          $origImageSrc[] = str_ireplace( 'src="', '',  $imgage[0]);
+        }
+        // will output all your img src's within the html string
+        return $origImageSrc;
     }
 
 }
