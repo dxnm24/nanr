@@ -24,7 +24,7 @@ class ApiController extends Controller
             $cacheName .= $request->type.'_';
             //get type by id
             $type = DB::table('post_types')
-                ->select('id', 'name')
+                ->select('id', 'name', 'slug')
                 ->where('id', $request->type)
                 ->where('status', ACTIVE)
                 ->first();
@@ -42,7 +42,7 @@ class ApiController extends Controller
         }
         //query
         $posts = DB::table('posts')
-            ->select('id', 'name', 'image');
+            ->select('id', 'name', 'slug', 'image');
         if(isset($request->type)) {
             $posts = $posts->where('type_main_id', $request->type);
         }
@@ -72,7 +72,7 @@ class ApiController extends Controller
         }
         //query
         $post = DB::table('posts')
-            ->select('id', 'name', 'type_main_id', 'description', 'image', 'post_material')
+            ->select('id', 'name', 'slug', 'type_main_id', 'description', 'image', 'post_material')
             ->where('id', $id)
             ->where('status', ACTIVE)
             ->where('start_date', '<=', date('Y-m-d H:i:s'))
