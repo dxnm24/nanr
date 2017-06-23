@@ -25,7 +25,7 @@
 	             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
 	             "save table contextmenu directionality emoticons template paste textcolor"
 	       	],
-					content_css: "css/content.css",
+					content_css: "/adminlte/plugins/tinymce/skins/lightgray/content.min.css",
 					toolbar: "undo redo | bold italic | formatselect fontselect fontsizeselect | forecolor backcolor | removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image media | link unlink | mybutton",
 					//add more button
 					setup: function (editor) {
